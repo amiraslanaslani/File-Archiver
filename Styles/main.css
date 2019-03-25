@@ -1,5 +1,7 @@
 body{
     margin: 0;
+    font-family: 'BlinkMacSystemFont', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
+    user-select: none;
 }
 
 #footer{
@@ -7,8 +9,14 @@ body{
     bottom: 0px;
     height: 40px;
     position: absolute;
-    background-color: #2c3e50;
+    background-color: #2f3640;
     border-top: 1px solid #000;
+    color: #bdc3c7;
+}
+
+#footer span{
+    margin: 10px 0 0 20px;
+    display: block;
 }
 
 .col{
@@ -21,12 +29,58 @@ body{
 #leftCol{
     width: 300px;
     left: 0;
-    background-color: #34495e;
+    background-color: #353b48;
     border-right: 1px solid #000;
+    color: #bdc3c7;
 }
 
 #rightCol{
     right: 0;
     left: 300px;
     background-color: #ecf0f1;
+}
+
+#leftColBtn{
+    position: absolute;
+    bottom: 0;
+    height: 70px;
+    width: 100%;
+    border-top: 1px solid #000;
+    background-color: #2f3640;
+    transition: all ease-in-out 0.3s;
+    cursor: pointer;
+}
+
+#leftColBtn:hover{
+    background-color: #2A303A;
+}
+
+#leftColBtn span{
+    display: block;
+    text-align: center;
+    margin: 20px;
+    font-size: 25px;
+}
+
+#leftColTopContent{
+    text-align: center;
+}
+
+.dark-inp{
+    margin: 20px 0 0px;
+    width: 82%;
+    height: 35px;
+    border-radius: 3px;
+    border: 0px solid #000;
+    padding: 10px;
+    background-color: #2A303A;
+    color: #fff;
+    box-shadow: 0 0 10px 0px #000;
+    font-size: 20px;
+}
+
+textarea.dark-inp{
+    resize: vertical;
+    height: 105px;
+    min-height: 70px;
 }
