@@ -38,6 +38,7 @@ body{
     right: 0;
     left: 300px;
     background-color: #ecf0f1;
+    text-align: center;
 }
 
 #leftColBtn{
@@ -74,7 +75,7 @@ body{
     border: 0px solid #000;
     padding: 10px;
     background-color: #2A303A;
-    color: #fff;
+    color: #bdc3c7;
     box-shadow: 0 0 10px 0px #000;
     font-size: 20px;
 }
@@ -83,4 +84,42 @@ textarea.dark-inp{
     resize: vertical;
     height: 105px;
     min-height: 70px;
+}
+
+button.dark-inp{
+    height: 60px;
+    color: #bdc3c7;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+.out-inp{
+        box-shadow: none;
+}
+
+.fileObject{
+    text-align: center;
+    display: inline-block;
+    margin: 15px 5px;
+    padding: 5px;
+    width: 130px;
+    border-radius: 5px;
+}
+
+.fileObject.selected, .fileObject.selected:hover{
+    background-color: #bdc3c7;
+}
+
+.fileObject:hover{
+    background-color: #dcdde1;
+}
+
+.fileObject .fileTextDiv{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #555;
+}
+
+#fileIconsList{
+    overflow-y: auto;
 }
