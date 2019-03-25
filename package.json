@@ -1,0 +1,29 @@
+{
+  "name": "file-archiver",
+  "version": "1.0.0",
+  "description": "File-Archiver",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amiraslanaslani/File-Archiver.git"
+  },
+  "keywords": [
+    "File",
+    "Archive",
+    "Tag"
+  ],
+  "author": "Amir Aslan Aslani",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/amiraslanaslani/File-Archiver/issues"
+  },
+  "homepage": "https://github.com/amiraslanaslani/File-Archiver#readme",
+  "dependencies": {
+    "electron": "^4.1.1",
+    "jquery": "^3.3.1"
+  }
+}
