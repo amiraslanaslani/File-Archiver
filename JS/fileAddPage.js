@@ -1,5 +1,6 @@
 const { dialog } = require('electron').remote;
 const fileModel = require('./Models/file.js');
+const path = require('path');
 
 var fs = require('fs');
 var isFileSelected = false;
@@ -47,12 +48,42 @@ let leftCol = () => {
     `
 }
 
-exports.addFileBtn = function() {
-    let name = $('#fileName').val();
-    let desc = $('#fileDesc').val();
-    let file = '4567890876tfcvbnjiyt';
+function resetPage(){
+    $('#fileName').val('');
+    $('#fileDesc').val('');
+    $('#filePath').val('');
+    $('#fileTags').val('');
+    $('#pathInfo').html('');
+    $('#sizeInfo').html('');
 
-    fileModel.add(name, desc, file, tags);
+    isFileSelected = false;
+    tags = [];
+    tagsNumber = 0;
+}
+
+exports.addFileBtn = function() {
+    if(! isFileSelected){
+        console.log('Please Select a file at the first!');
+        return;
+    }
+
+    let filePath = $('#filePath').val();
+    let filePathName = path.basename(filePath);
+    let newFileName = generate_random_string(5) + '_' + filePathName;
+
+    fs.copyFile(filePath, 'Files/' + newFileName, (err) => {
+        if(err) {
+            console.log(err);
+        }
+        else {
+            let name = $('#fileName').val();
+            let desc = $('#fileDesc').val();
+            let file = newFileName;
+
+            fileModel.add(name, desc, file, tags);
+            resetPage();
+        }
+    });
 }
 
 var tagsNumber = 0;
@@ -143,4 +174,14 @@ exports.load = function() {
     $('#leftColBtn').click(() => {
         filesViewPage.load();
     });
+}
+
+function generate_random_string(string_length){
+    let random_string = '';
+    let random_ascii;
+    for(let i = 0; i < string_length; i++) {
+        random_ascii = Math.floor((Math.random() * 25) + 97);
+        random_string += String.fromCharCode(random_ascii)
+    }
+    return random_string
 }

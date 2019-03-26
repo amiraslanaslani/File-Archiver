@@ -30,5 +30,8 @@ node_modules
 # Database file
 db.sqlite
 
+# Saved Files
+Files
+
 # Dolphine file
 .directory
