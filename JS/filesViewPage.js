@@ -1,3 +1,5 @@
+const fileModel = require('./Models/file.js');
+
 let rightCol = () => {
     return `
         right
@@ -25,4 +27,5 @@ exports.load = function() {
     $('#leftColBtn').click(() => {
         fileAddPage.load();
     });
+    fileModel.load();
 }

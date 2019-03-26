@@ -1,4 +1,6 @@
 const { dialog } = require('electron').remote;
+const fileModel = require('./Models/file.js');
+
 var fs = require('fs');
 var isFileSelected = false;
 
@@ -12,7 +14,7 @@ let rightCol = () => {
             <p>
                 <strong>Path: </strong> <span id="pathInfo">-</span><br>
                 <strong>File Size: </strong> <span id="sizeInfo">-</span><br>
-                <strong>Tags: </strong> 
+                <strong>Tags: </strong>
             </p>
             <div id="tagsDiv">
             </div>
@@ -29,9 +31,9 @@ let leftCol = () => {
             <br>
             <input id="fileTags" class="dark-inp" type="text" placeholder="Tags" value="">
             <br>
-            <textarea class="dark-inp" placeholder="Description"></textarea>
+            <textarea id="fileDesc" class="dark-inp" placeholder="Description"></textarea>
             <br>
-            <button class="dark-inp">Add File</button>
+            <button id="addFileBtn" class="dark-inp">Add File</button>
         </div>
         <div id="leftColBtn">
             <span>
@@ -40,8 +42,17 @@ let leftCol = () => {
         </div>
         <script>
             $('#fileTags').keypress(fileAddPage.tagsKeyPress)
+            $('#addFileBtn').click(fileAddPage.addFileBtn)
         </script>
     `
+}
+
+exports.addFileBtn = function() {
+    let name = $('#fileName').val();
+    let desc = $('#fileDesc').val();
+    let file = '4567890876tfcvbnjiyt';
+
+    fileModel.add(name, desc, file, tags);
 }
 
 var tagsNumber = 0;
