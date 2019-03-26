@@ -12,7 +12,10 @@ let rightCol = () => {
             <p>
                 <strong>Path: </strong> <span id="pathInfo">-</span><br>
                 <strong>File Size: </strong> <span id="sizeInfo">-</span><br>
+                <strong>Tags: </strong> 
             </p>
+            <div id="tagsDiv">
+            </div>
         </div>
     `
 }
@@ -25,8 +28,6 @@ let leftCol = () => {
             <input id="fileName" class="dark-inp" type="text" placeholder="Name" value="">
             <br>
             <input id="fileTags" class="dark-inp" type="text" placeholder="Tags" value="">
-            <div id="tagsDiv">
-            </div>
             <br>
             <textarea class="dark-inp" placeholder="Description"></textarea>
             <br>

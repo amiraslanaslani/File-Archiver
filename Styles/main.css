@@ -145,12 +145,13 @@ button.light-inp:hover, .light-inp:focus{
 }
 
 #tagsDiv span{
-    background-color: #2A303A;
-    padding: 5px 10px;
+    background-color: #353b48;
+    padding: 5px 10px 5px 15px;
     font-size: 18px;
-    border-radius: 15px;
+    border-radius: 10px;
     margin: 5px;
     display: inline-block;
+    color: #FFF;
 }
 
 #tagsDiv span a{
