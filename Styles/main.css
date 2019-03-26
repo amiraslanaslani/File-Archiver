@@ -53,7 +53,7 @@ body{
 }
 
 #leftColBtn:hover{
-    background-color: #2A303A;
+    background-color: #1e272e;
 }
 
 #leftColBtn span{
@@ -76,8 +76,9 @@ body{
     padding: 10px;
     background-color: #2A303A;
     color: #bdc3c7;
-    box-shadow: 0 0 10px 0px #000;
+    /* box-shadow: 0 0 10px 0px #000; */
     font-size: 20px;
+    transition: background 0.3s;
 }
 
 textarea.dark-inp{
@@ -93,8 +94,20 @@ button.dark-inp{
     cursor: pointer;
 }
 
-.out-inp{
-        box-shadow: none;
+button.dark-inp:hover, .dark-inp:focus{
+    background-color: #1e272e;
+    outline: none;
+}
+
+.light-inp{
+    box-shadow: none;
+    background-color: #16a085;
+    color: #fff !important;
+    border: none !important;
+}
+
+button.light-inp:hover, .light-inp:focus{
+    background-color: #1abc9c;
 }
 
 .fileObject{
@@ -122,4 +135,27 @@ button.dark-inp{
 
 #fileIconsList{
     overflow-y: auto;
+}
+
+#selectedFilesInfo{
+    text-align: left;
+    width: 80%;
+    margin: 0 auto;
+    line-height: 30px;
+}
+
+#tagsDiv span{
+    background-color: #2A303A;
+    padding: 5px 10px;
+    font-size: 18px;
+    border-radius: 15px;
+    margin: 5px;
+    display: inline-block;
+}
+
+#tagsDiv span a{
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px;
+    color: #e74c3c;
 }
