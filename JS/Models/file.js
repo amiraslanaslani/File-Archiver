@@ -16,11 +16,30 @@ exports.add = function(passed_name, passed_description, passed_filename, passed_
         description: passed_description,
         file_name: passed_filename
     }, callback);
+}
 
-
+exports.loadTagsList = function(callback){
+    let query = "SELECT DISTINCT tag FROM files_tags";
+    baseModel.db.all(query, [], (err, rows) => {
+        if(err){
+            console.log(err);
+        }
+        else{
+            callback(rows)
+        }
+    });
 }
 
 exports.load = function(){
+    exports.loadTagsList( (err, rows) => {
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log(rows);
+        }
+    });
+
     let query = `SELECT * FROM files`;
 
     baseModel.db.all(query, [], (err, rows) => {
