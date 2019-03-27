@@ -15,7 +15,7 @@ let leftCol = (tags) => {
     for(let tagID in tags){
         let tag = tags[tagID].tag;
         content += `
-            <span>
+            <span data-tag="${tag}">
                 <div class="check">
                     <input type="checkbox" data-tag="${tag}">
                     <div class="box"></div>
@@ -28,7 +28,8 @@ let leftCol = (tags) => {
     return `
         <div id="leftColTopContent">
             <div id="tagSelection">
-                <input class="dark-inp" type="text" id="tagSearch" placeholder="Search">
+                <input class="dark-inp" type="text" id="fileSearch" placeholder="File Search"><br>
+                <input class="dark-inp" type="text" id="tagSearch" placeholder="Tag Search">
                 <div id="tagsBox">
                     ${content}
                 </div>
@@ -59,7 +60,7 @@ function showLeftSide(){
 }
 
 function refreshView(){
-    let searchString = $('#tagSearch').val().trim();
+    let searchString = $('#fileSearch').val().trim();
     let selectedTags = $('#tagsBox input:checked').map(function() {
         return $(this).data('tag');
     }).get();
@@ -76,8 +77,19 @@ exports.leftPanelLoad = function(){
         refreshView();
     })
 
-    $('#tagSearch').keyup(function(){
+    $('#fileSearch').keyup(function(){
         refreshView();
+    })
+
+    $('#tagSearch').keyup(function(){
+        let searchString = $('#tagSearch').val().trim();
+        if(searchString == ''){
+            $(`#tagsBox span`).show();
+        }
+        else{
+            $(`#tagsBox span`).hide();
+            $(`#tagsBox span[data-tag*='${searchString}']`).show();
+        }
     })
 }
 
