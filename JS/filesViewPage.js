@@ -46,6 +46,9 @@ let leftCol = (tags) => {
 }
 
 function showRightSide(selectedTags = [], searchString = ''){
+    fileModel.loadFilesFromTagAndSearchString(selectedTags, searchString, (rows) => {
+        console.log(rows);
+    })
     $('#rightCol').html(rightCol());
 }
 

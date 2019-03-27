@@ -18,6 +18,37 @@ exports.add = function(passed_name, passed_description, passed_filename, passed_
     }, callback);
 }
 
+exports.loadFilesFromTagAndSearchString = function(tags = [], search = '', callback = () => {}){
+    let whereQuery = '';
+    if(search != ''){
+        whereQuery = ` AND name LIKE '%${search}%' `
+    }
+
+    for(let tagId in tags){
+        let tag = tags[tagId];
+        whereQuery += `
+        AND id IN (
+            SELECT file_id
+            FROM files_tags
+            WHERE tag = '${tag}'
+        ) 
+        `;
+    }
+
+    let query = `SELECT * 
+                 FROM files
+                 WHERE 1 ${whereQuery}`;
+
+    baseModel.db.all(query, [], (err, rows) => {
+        if(err){
+            console.log(err);
+        }
+        else{
+            callback(rows)
+        }
+    });
+}
+
 exports.loadTagsList = function(callback){
     let query = "SELECT DISTINCT tag FROM files_tags";
     baseModel.db.all(query, [], (err, rows) => {
