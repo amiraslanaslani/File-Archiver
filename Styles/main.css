@@ -1,3 +1,5 @@
+@import 'viewPageLeftCol.css';
+
 body{
     margin: 0;
     font-family: 'BlinkMacSystemFont', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
@@ -142,21 +144,4 @@ button.light-inp:hover, .light-inp:focus{
     width: 80%;
     margin: 0 auto;
     line-height: 30px;
-}
-
-#tagsDiv span{
-    background-color: #353b48;
-    padding: 5px 10px 5px 15px;
-    font-size: 18px;
-    border-radius: 10px;
-    margin: 5px;
-    display: inline-block;
-    color: #FFF;
-}
-
-#tagsDiv span a{
-    font-weight: bold;
-    cursor: pointer;
-    padding: 5px;
-    color: #e74c3c;
 }

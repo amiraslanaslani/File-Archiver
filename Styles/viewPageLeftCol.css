@@ -1,0 +1,106 @@
+
+#tagsDiv span{
+    background-color: #353b48;
+    padding: 5px 10px 5px 15px;
+    font-size: 18px;
+    border-radius: 10px;
+    margin: 5px;
+    display: inline-block;
+    color: #FFF;
+}
+
+#tagsDiv span a{
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px;
+    color: #e74c3c;
+}
+
+#tagsBox{
+    overflow-y: auto;
+    position: absolute;
+    bottom: 90px;
+    top: 80px;
+    left: 30px;
+    text-align: left;
+    right: 30px;
+}
+
+#tagsBox span{
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+#tagsBox span a{
+    font-size: 20px;
+    vertical-align: super;
+    margin-left: 10px;
+}
+
+/*
+ * Scroll Style
+ */
+
+#tagsBox::-webkit-scrollbar
+{
+    width: 12px;
+}
+ 
+#tagsBox::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-color: #16a085;
+}
+ 
+/*
+ * Check box
+ */
+ 
+.check {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+ 
+.check input {
+     display: none;
+}
+ 
+.check input:checked + .box {
+    background-color: #b3ffb7;
+}
+ 
+.check input:checked + .box:after {
+    top: 0;
+}
+ 
+.check .box {
+    width: 100%;
+    height: 100%;
+    transition: all 1.1s cubic-bezier(0.19, 1, 0.22, 1);
+    border: 2px solid transparent;
+    background-color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+ 
+.check .box:after {
+    width: 50%;
+    height: 20%;
+    content: '';
+    position: absolute;
+    border-left: 3.5px solid;
+    border-bottom: 3.5px solid;
+    border-color: #40c540;
+    transform: rotate(-45deg) translate3d(0, 0, 0);
+    transform-origin: center center;
+    transition: all 1.1s cubic-bezier(0.19, 1, 0.22, 1);
+    left: 0;
+    right: 0;
+    top: 200%;
+    bottom: 5%;
+    margin: auto;
+ }
