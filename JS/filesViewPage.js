@@ -5,7 +5,7 @@ let rightCol = (files) => {
 
     files.forEach(file => {
         filesForView.push({
-            img: '',
+            img: '', //TODO add correct picture
             type: 'file',
             name: file.name
         });
@@ -22,7 +22,7 @@ let leftCol = (tags) => {
         let tag = tags[tagID].tag;
         content += `
             <span data-tag="${tag}">
-                <div class="check">
+                <div class="check-light">
                     <input type="checkbox" data-tag="${tag}">
                     <div class="box"></div>
                 </div>
@@ -49,12 +49,12 @@ let leftCol = (tags) => {
         <script>
             filesViewPage.leftPanelLoad();
         </script>
-    `
+    `;
 }
 
 function showRightSide(selectedTags = [], searchString = ''){
     fileModel.loadFilesFromTagAndSearchString(selectedTags, searchString, (rows) => {
-        console.log(rows);
+        // console.log(rows);
         $('#rightCol').html(rightCol(rows));
     })
 }
@@ -62,6 +62,10 @@ function showRightSide(selectedTags = [], searchString = ''){
 function showLeftSide(){
     fileModel.loadTagsList(function(tags){
         $('#leftCol').html(leftCol(tags));
+
+        $('#leftColBtn').click(() => {
+            fileAddPage.load();
+        });
     });
 }
 
@@ -102,8 +106,5 @@ exports.leftPanelLoad = function(){
 exports.load = function() {
     showRightSide();
     showLeftSide();
-    $('#leftColBtn').click(() => {
-        fileAddPage.load();
-    });
     // fileModel.load();
 }

@@ -11,6 +11,15 @@ let rightCol = () => {
         <button class="dark-inp light-inp" onClick="fileAddPage.selectFile()">
             Select File
         </button>
+        <div id="pathUsingCheckBoxDiv">
+            <label>
+                <div class="check-dark">
+                    <input type="checkbox">
+                    <div class="box"></div>
+                </div>
+                <a>Use file path (Intead of keeping a copy of the file)</a>
+            </label>
+        </div>
         <div id="selectedFilesInfo">
             <p>
                 <strong>Path: </strong> <span id="pathInfo">-</span><br>

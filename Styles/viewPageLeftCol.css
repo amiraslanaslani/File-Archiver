@@ -57,25 +57,25 @@
  * Check box
  */
  
-.check {
+.check-light {
     width: 20px;
     height: 20px;
     display: inline-block;
 }
- 
-.check input {
-     display: none;
+
+.check-light input {
+    display: none;
 }
- 
-.check input:checked + .box {
+
+.check-light input:checked + .box {
     background-color: #b3ffb7;
 }
- 
-.check input:checked + .box:after {
+
+.check-light input:checked + .box:after {
     top: 0;
 }
- 
-.check .box {
+
+.check-light .box {
     width: 100%;
     height: 100%;
     transition: all 1.1s cubic-bezier(0.19, 1, 0.22, 1);
@@ -86,8 +86,8 @@
     box-shadow: 0 5px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
 }
- 
-.check .box:after {
+
+.check-light .box:after {
     width: 50%;
     height: 20%;
     content: '';
