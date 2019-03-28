@@ -15,7 +15,8 @@ exports.load = () => {
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     name TEXT,
                     description TEXT,
-                    file_name TEXT
+                    file_name TEXT,
+                    using_path INTEGER
                 )`, (err) => {
             console.log(err);
         });

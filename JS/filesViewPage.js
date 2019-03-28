@@ -20,8 +20,9 @@ let leftCol = (tags) => {
 
     for(let tagID in tags){
         let tag = tags[tagID].tag;
+        let lowercase_tag = tag.toLowerCase();
         content += `
-            <span data-tag="${tag}">
+            <span data-tag="${lowercase_tag}">
                 <div class="check-light">
                     <input type="checkbox" data-tag="${tag}">
                     <div class="box"></div>
@@ -92,7 +93,7 @@ exports.leftPanelLoad = function(){
     })
 
     $('#tagSearch').keyup(function(){
-        let searchString = $('#tagSearch').val().trim();
+        let searchString = $('#tagSearch').val().trim().toLowerCase();
         if(searchString == ''){
             $(`#tagsBox span`).show();
         }

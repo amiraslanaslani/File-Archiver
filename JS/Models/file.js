@@ -1,6 +1,6 @@
 const baseModel = require('./baseModel.js');
 
-exports.add = function(passed_name, passed_description, passed_filename, passed_tags){
+exports.add = function(passed_name, passed_description, passed_filename, passed_tags, using_path){
 
     let callback = (id) => {
         for(let tag_name in passed_tags){
@@ -11,10 +11,13 @@ exports.add = function(passed_name, passed_description, passed_filename, passed_
         }
     };
 
+    let using_path_int = using_path ? 1 : 0;
+
     baseModel.addToDatabase('files', {
         name: passed_name,
         description: passed_description,
-        file_name: passed_filename
+        file_name: passed_filename,
+        using_path: using_path_int
     }, callback);
 }
 

@@ -14,7 +14,7 @@ let rightCol = () => {
         <div id="pathUsingCheckBoxDiv">
             <label>
                 <div class="check-dark">
-                    <input type="checkbox">
+                    <input type="checkbox" id="pathUsingCheckBox">
                     <div class="box"></div>
                 </div>
                 <a>Use file path (Intead of keeping a copy of the file)</a>
@@ -77,22 +77,33 @@ exports.addFileBtn = function() {
     }
 
     let filePath = $('#filePath').val();
-    let filePathName = path.basename(filePath);
-    let newFileName = generate_random_string(5) + '_' + filePathName;
 
-    fs.copyFile(filePath, 'Files/' + newFileName, (err) => {
-        if(err) {
-            console.log(err);
-        }
-        else {
-            let name = $('#fileName').val();
-            let desc = $('#fileDesc').val();
-            let file = newFileName;
+    if(! $('#pathUsingCheckBox').is(':checked')){
+        let filePathName = path.basename(filePath);
+        let newFileName = generate_random_string(5) + '_' + filePathName;
 
-            fileModel.add(name, desc, file, tags);
-            resetPage();
-        }
-    });
+        fs.copyFile(filePath, 'Files/' + newFileName, (err) => {
+            if(err) {
+                console.log(err);
+            }
+            else {
+                let name = $('#fileName').val();
+                let desc = $('#fileDesc').val();
+                let file = newFileName;
+    
+                fileModel.add(name, desc, file, tags, false);
+                resetPage();
+            }
+        });
+    }
+    else{
+        let name = $('#fileName').val();
+        let desc = $('#fileDesc').val();
+
+        fileModel.add(name, desc, filePath, tags, true);
+        resetPage();
+    }
+    
 }
 
 var tagsNumber = 0;
