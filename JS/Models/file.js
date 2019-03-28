@@ -37,7 +37,7 @@ exports.loadFilesFromTagAndSearchString = function(tags = [], search = '', callb
 
     let query = `SELECT * 
                  FROM files
-                 WHERE 1 ${whereQuery}`;
+                 WHERE 1 ${whereQuery}`; //TODO add limit and pagination
 
     baseModel.db.all(query, [], (err, rows) => {
         if(err){
@@ -61,35 +61,35 @@ exports.loadTagsList = function(callback){
     });
 }
 
-exports.load = function(){
-    exports.loadTagsList( (err, rows) => {
-        if(err){
-            console.log(err);
-        }
-        else{
-            console.log(rows);
-        }
-    });
+// exports.load = function(){
+//     exports.loadTagsList( (err, rows) => {
+//         if(err){
+//             console.log(err);
+//         }
+//         else{
+//             console.log(rows);
+//         }
+//     });
 
-    let query = `SELECT * FROM files`;
+//     let query = `SELECT * FROM files`;
 
-    baseModel.db.all(query, [], (err, rows) => {
-        if(err){
-            console.log(err);
-        }
-        else{
-            console.log(rows);
-        }
-    });
+//     baseModel.db.all(query, [], (err, rows) => {
+//         if(err){
+//             console.log(err);
+//         }
+//         else{
+//             console.log(rows);
+//         }
+//     });
 
-    query = `SELECT * FROM files_tags`;
+//     query = `SELECT * FROM files_tags`;
 
-    baseModel.db.all(query, [], (err, rows) => {
-        if(err){
-            console.log(err);
-        }
-        else{
-            console.log(rows);
-        }
-    });
-}
+//     baseModel.db.all(query, [], (err, rows) => {
+//         if(err){
+//             console.log(err);
+//         }
+//         else{
+//             console.log(rows);
+//         }
+//     });
+// }

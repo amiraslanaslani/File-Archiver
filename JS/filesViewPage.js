@@ -1,11 +1,17 @@
 const fileModel = require('./Models/file.js');
 
-let rightCol = () => {
-    return `
-        right
-        Col
-        Files View
-    `
+let rightCol = (files) => {
+    let filesForView = [];
+
+    files.forEach(file => {
+        filesForView.push({
+            img: '',
+            type: 'file',
+            name: file.name
+        });
+    });
+
+    return showFileIcons.load(filesForView);
 }
 
 let leftCol = (tags) => {
@@ -49,8 +55,8 @@ let leftCol = (tags) => {
 function showRightSide(selectedTags = [], searchString = ''){
     fileModel.loadFilesFromTagAndSearchString(selectedTags, searchString, (rows) => {
         console.log(rows);
+        $('#rightCol').html(rightCol(rows));
     })
-    $('#rightCol').html(rightCol());
 }
 
 function showLeftSide(){
@@ -99,5 +105,5 @@ exports.load = function() {
     $('#leftColBtn').click(() => {
         fileAddPage.load();
     });
-    fileModel.load();
+    // fileModel.load();
 }
