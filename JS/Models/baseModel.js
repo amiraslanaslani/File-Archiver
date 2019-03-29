@@ -31,3 +31,15 @@ exports.addToDatabase = function(tableName, data, callback) {
         }
     });
 }
+
+exports.loadWithID = function(table, id, callback){
+    let query = `SELECT * FROM ${table} WHERE id = ?`;
+    db.get(query, [id], (err, row) => {
+        if(err){
+            dialogs.openErrorDialog(err);
+        }
+        else{
+            callback(row);
+        }
+    });
+}

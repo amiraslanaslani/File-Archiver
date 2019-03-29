@@ -12,30 +12,37 @@ function loadBaseStructure(innerHtml){
     `;
 }
 
+exports.getFileImage = function(file){
+    var img = '../Pictures/';
+
+    if(file.img == ''){
+        if(file.type == 'folder'){
+            img += 'folder.png';
+        }
+        else{
+            img += 'file.png';
+        }
+    }
+    else {
+        img += file.img;
+    }
+
+    return img;
+}
+
 var currentLoadedFilesList;
-exports.load = (filesList) => {
+var fileCheckAction;
+exports.load = (filesList, checkAction) => {
     currentLoadedFilesList = filesList;
+    fileCheckAction = checkAction;
 
     var content = '';
     for(var fileID in filesList){
         var file = filesList[fileID];
-        var img = '../Pictures/';
-
-
-        if(file.img == ''){
-            if(file.type == 'folder'){
-                img += 'folder.png';
-            }
-            else{
-                img += 'file.png';
-            }
-        }
-        else {
-            img += file.img;
-        }
+        var img = exports.getFileImage(file);
 
         content += `
-            <div class="fileObject" data-id="${fileID}">
+            <div class="fileObject" data-id="${file.id}">
                 <div class="fileImgDiv">
                     <img src="${img}">
                 </div>
@@ -54,5 +61,5 @@ exports.checkAsSelected = function(obj){
     $(obj).addClass('selected');
 
     let selectedID = $(obj).data('id');
-    console.log(currentLoadedFilesList[selectedID]);
+    fileCheckAction(selectedID);
 }

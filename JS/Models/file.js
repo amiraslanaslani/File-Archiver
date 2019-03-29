@@ -65,35 +65,22 @@ exports.loadTagsList = function(callback){
     });
 }
 
-// exports.load = function(){
-//     exports.loadTagsList( (err, rows) => {
-//         if(err){
-//             console.log(err);
-//         }
-//         else{
-//             console.log(rows);
-//         }
-//     });
+exports.loadTagsListWithFileID = function(fileID, callback){
+    let query = "SELECT DISTINCT tag FROM files_tags WHERE file_id = ?";
+    baseModel.db.all(query, [fileID], (err, rows) => {
+        if(err){
+            dialogs.openErrorDialog(err);
+        }
+        else{
+            callback(rows)
+        }
+    });
+}
 
-//     let query = `SELECT * FROM files`;
+exports.loadWithID = function(id, callback){
+    baseModel.loadWithID('files', id, callback);
+}
 
-//     baseModel.db.all(query, [], (err, rows) => {
-//         if(err){
-//             console.log(err);
-//         }
-//         else{
-//             console.log(rows);
-//         }
-//     });
-
-//     query = `SELECT * FROM files_tags`;
-
-//     baseModel.db.all(query, [], (err, rows) => {
-//         if(err){
-//             console.log(err);
-//         }
-//         else{
-//             console.log(rows);
-//         }
-//     });
-// }
+exports.load = function(){
+    
+}

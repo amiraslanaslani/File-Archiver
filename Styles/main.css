@@ -123,6 +123,7 @@ button.light-inp:hover, .light-inp:focus{
     border-radius: 5px;
     overflow-wrap: break-word;
     vertical-align: top;
+    cursor: pointer;
 }
 
 .fileObject.selected, .fileObject.selected:hover{
@@ -150,6 +151,65 @@ button.light-inp:hover, .light-inp:focus{
     height: 100%;
 }
 
+#fileIconsList.infoBoxIsOpened{
+    height: calc(100% - 200px);
+}
+
+#fileInfoBox{
+    display: none;
+}
+
+#fileInfoBox.infoBoxIsOpened{
+    height: 200px;
+    background-color: #DADEE0;
+    border-top: 1px solid #B5BABE;
+    display: block;
+}
+
+#fileInfoBox #fileInfoImgDiv{
+    float: left;
+    padding: 20px;
+    height: 160px;
+    margin-right: 20px;
+}
+
+#fileInfoBox #fileInfoImgDiv img{
+    height: 160px;
+}
+
+#fileInfoTextDiv, #fileInfoImgDiv{
+    float: left;
+}
+
+#fileInfoBox #fileInfoTextDiv{
+    line-height: 25px;
+    padding: 20px;
+    text-align: left;
+    color: #333;
+}
+
+#fileInfoBox #buttonBar{
+    color: #353b48;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 20px;
+    padding-top: 10px;
+    position: absolute;
+    right: 0;
+}
+
+#fileInfoBox #maximizeButton, #fileInfoBox #closeButton{
+    padding: 10px;
+    color: #353b48;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#fileInfoBox #closeButton{
+    font-size: 25px;
+}
+
 .fileImgDiv img{
     width: 90px;
     height: 90px;
@@ -160,4 +220,9 @@ button.light-inp:hover, .light-inp:focus{
     width: 80%;
     margin: 0 auto;
     line-height: 30px;
+}
+
+.errorText{
+    color: #c0392b;
+    font-weight: bold;
 }
