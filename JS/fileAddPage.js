@@ -65,6 +65,7 @@ function resetPage(){
     $('#fileTags').val('');
     $('#pathInfo').html('');
     $('#sizeInfo').html('');
+    $('#tagsDiv').html('');
 
     isFileSelected = false;
     tags = [];
@@ -78,6 +79,8 @@ exports.addFileBtn = function() {
     }
 
     let filePath = $('#filePath').val();
+    let name = $('#fileName').val();
+    let desc = $('#fileDesc').val();
 
     if(! $('#pathUsingCheckBox').is(':checked')){
         let filePathName = path.basename(filePath);
@@ -90,19 +93,14 @@ exports.addFileBtn = function() {
                 dialogs.openErrorDialog(err);
             }
             else {
-                let name = $('#fileName').val();
-                let desc = $('#fileDesc').val();
                 let file = newFileName;
-    
+
                 fileModel.add(name, desc, file, tags, false);
                 resetPage();
             }
         });
     }
     else{
-        let name = $('#fileName').val();
-        let desc = $('#fileDesc').val();
-
         fileModel.add(name, desc, filePath, tags, true);
         resetPage();
     }
@@ -126,7 +124,7 @@ exports.tagsKeyPress = function(ev) {
                     <a data-id="tag-${tagsNumber}" data-value="${tagName}">×</a>
                 </span>
                 <script>
-                    $('#tagsDiv span a').click(fileAddPage.removeTag)
+                    $('#tagsDiv span#tag-${tagsNumber} a').click(fileAddPage.removeTag)
                 </script>`
             );
         }

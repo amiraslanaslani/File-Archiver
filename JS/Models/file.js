@@ -1,4 +1,5 @@
 const baseModel = require('./baseModel.js');
+const dialogs = require('../dialogs.js');
 
 exports.add = function(passed_name, passed_description, passed_filename, passed_tags, using_path){
 
@@ -44,7 +45,7 @@ exports.loadFilesFromTagAndSearchString = function(tags = [], search = '', callb
 
     baseModel.db.all(query, [], (err, rows) => {
         if(err){
-            console.log(err);
+            dialogs.openErrorDialog(err);
         }
         else{
             callback(rows)
@@ -56,7 +57,7 @@ exports.loadTagsList = function(callback){
     let query = "SELECT DISTINCT tag FROM files_tags";
     baseModel.db.all(query, [], (err, rows) => {
         if(err){
-            console.log(err);
+            dialogs.openErrorDialog(err);
         }
         else{
             callback(rows)

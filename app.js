@@ -4,6 +4,8 @@ app.once('ready', () => {
     let window = new BrowserWindow({
         width: 960,
         height: 600,
+        minWidth: 700,
+        minHeight: 500,
         frame: true
     })
 

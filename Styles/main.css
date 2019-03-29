@@ -121,6 +121,8 @@ button.light-inp:hover, .light-inp:focus{
     padding: 5px;
     width: 130px;
     border-radius: 5px;
+    overflow-wrap: break-word;
+    vertical-align: top;
 }
 
 .fileObject.selected, .fileObject.selected:hover{
@@ -137,10 +139,15 @@ button.light-inp:hover, .light-inp:focus{
     color: #555;
 }
 
+.fileObject p{
+    margin: 0;
+}
+
 #fileIconsList{
     text-align: left;
     overflow-y: auto;
     margin: 0 10px;
+    height: 100%;
 }
 
 .fileImgDiv img{
