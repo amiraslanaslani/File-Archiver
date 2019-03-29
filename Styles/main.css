@@ -6,6 +6,7 @@ body{
     margin: 0;
     font-family: 'BlinkMacSystemFont', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
     user-select: none;
+    overflow: hidden;
 }
 
 #footer{
@@ -149,6 +150,7 @@ button.light-inp:hover, .light-inp:focus{
     overflow-y: auto;
     margin: 0 10px;
     height: 100%;
+    transition: height ease-in-out 1s;
 }
 
 #fileIconsList.infoBoxIsOpened{
@@ -157,6 +159,7 @@ button.light-inp:hover, .light-inp:focus{
 
 #fileInfoBox{
     display: none;
+    transition: height ease-in-out 1s;
 }
 
 #fileInfoBox.infoBoxIsOpened{
@@ -198,7 +201,13 @@ button.light-inp:hover, .light-inp:focus{
     right: 0;
 }
 
-#fileInfoBox #maximizeButton, #fileInfoBox #closeButton{
+#minimizeButton{
+    display: none;
+}
+
+#fileInfoBox #minimizeButton
+#fileInfoBox #maximizeButton,
+#fileInfoBox #closeButton{
     padding: 10px;
     color: #353b48;
     font-weight: bold;
@@ -207,7 +216,15 @@ button.light-inp:hover, .light-inp:focus{
 }
 
 #fileInfoBox #closeButton{
-    font-size: 25px;
+    font-size: 28px;
+}
+
+#fileIconsList.infoBoxIsOpened.maximized{
+    height: 0;
+}
+
+#fileInfoBox.infoBoxIsOpened.maximized{
+    height: 100%;
 }
 
 .fileImgDiv img{

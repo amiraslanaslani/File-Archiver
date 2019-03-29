@@ -71,6 +71,9 @@ let rightCol = (files) => {
                 <a id="maximizeButton">
                     🗖
                 </a>
+                <a id="minimizeButton">
+                    🗕
+                </a>
                 <a id="closeButton">
                     ×
                 </a>
@@ -125,7 +128,25 @@ function showRightSide(selectedTags = [], searchString = ''){
         $('#closeButton').click(() => {
             closeInfoBox();
         })
+        $('#maximizeButton').click(() => {
+            maximizeInfoBox();
+        });
+        $('#minimizeButton').click(() => {
+            minimizeInfoBox();
+        });
     })
+}
+
+function maximizeInfoBox(){
+    $('#maximizeButton').hide();
+    $('#minimizeButton').show();
+    $('#fileIconsList, #fileInfoBox').addClass('maximized');
+}
+
+function minimizeInfoBox(){
+    $('#maximizeButton').show();
+    $('#minimizeButton').hide();
+    $('#fileIconsList, #fileInfoBox').removeClass('maximized');
 }
 
 function showLeftSide(){
@@ -149,6 +170,7 @@ function openInfoBox(name, type, size, desc, tags, picture){
 }
 
 function closeInfoBox(){
+    minimizeInfoBox();
     $('#fileInfoBox, #fileIconsList').removeClass('infoBoxIsOpened');
 }
 
