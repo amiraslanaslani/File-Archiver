@@ -1,5 +1,6 @@
 const { dialog } = require('electron').remote;
 const fileModel = require('./Models/file.js');
+const dialogs = require('./dialogs.js');
 const path = require('path');
 
 var fs = require('fs');
@@ -72,7 +73,7 @@ function resetPage(){
 
 exports.addFileBtn = function() {
     if(! isFileSelected){
-        console.log('Please Select a file at the first!');
+        dialogs.openErrorDialog('Please Select a file at the first!', true);
         return;
     }
 
@@ -82,9 +83,11 @@ exports.addFileBtn = function() {
         let filePathName = path.basename(filePath);
         let newFileName = generate_random_string(5) + '_' + filePathName;
 
+        dialogs.openLoadingDialog();
         fs.copyFile(filePath, 'Files/' + newFileName, (err) => {
+            dialogs.closeLoadingDialog();
             if(err) {
-                console.log(err);
+                dialogs.openErrorDialog(err);
             }
             else {
                 let name = $('#fileName').val();
@@ -178,13 +181,12 @@ exports.selectFile = function() {
             $('#fileName').val(name);
         }
         else {
-            alert('Please select a file. (You are selected a directory)');
+            dialogs.openErrorDialog('Please select a file. (You are selected a directory)', true);
         }
 
     }
     catch(err){
-        alert(err);
-        alert('File does not exist!');
+        dialogs.openErrorDialog(err);
     }
 }
 

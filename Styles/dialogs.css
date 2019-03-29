@@ -47,6 +47,12 @@
 	margin: 10px;
 }
 
+#errorDialog div p.centralized{
+	text-align: center;
+    font-size: 20px;
+    padding: 40px 0;
+}
+
 /*
  * Animation
  */

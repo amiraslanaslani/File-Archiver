@@ -1,4 +1,5 @@
 const dbLoader = require('../db.loader.js');
+const dialogs = require('../dialogs.js');
 
 var db = dbLoader.load();
 
@@ -21,7 +22,7 @@ exports.addToDatabase = function(tableName, data, callback) {
 
     db.run(query, function(err) {
         if(err){
-            console.log(err);
+            dialogs.openErrorDialog(err);
         }
         else{
             if(callback !== null){

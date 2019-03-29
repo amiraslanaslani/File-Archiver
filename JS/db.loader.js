@@ -1,11 +1,12 @@
 const sqlite3 = require('sqlite3')
+const dialogs = require('./dialogs.js');
 
 var db;
 
 exports.load = () => {
     db = new sqlite3.Database("./db.sqlite", (err) => {
         if (err) {
-            console.log(err);
+            dialogs.openErrorDialog(err);
         }
     })
 
@@ -17,8 +18,11 @@ exports.load = () => {
                     description TEXT,
                     file_name TEXT,
                     using_path INTEGER
-                )`, (err) => {
-            console.log(err);
+                )`, 
+                function(err) {
+                    if(err){
+                        dialogs.openErrorDialog(err);
+                    }
         });
 
         db.run(`CREATE TABLE IF NOT EXISTS files_tags
@@ -26,8 +30,11 @@ exports.load = () => {
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     file_id INTEGER,
                     tag TEXT
-                )`, (err) => {
-            console.log(err);
+                )`, 
+                function(err) {
+                    if(err){
+                        dialogs.openErrorDialog(err);
+                    }
         });
     })
 
@@ -38,14 +45,14 @@ exports.reset = () => {
     db.run(
         `DELETE FROM files`
         ,(err) => {
-            console.log(err);
+            dialogs.openErrorDialog(err);
         }
     );
 
     db.run(
         `DELETE FROM files_tags`
         ,(err) => {
-            console.log(err);
+            dialogs.openErrorDialog(err);
         }
     );
 }

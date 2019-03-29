@@ -40,7 +40,11 @@ exports.closeLoadingDialog = function(){
     });
 }
 
-exports.openErrorDialog = function(error){
+exports.openErrorDialog = function(error, isCentralized = false){
+    let centralized = '';
+    if(isCentralized)
+        centralized = 'centralized';
+
     let dialog = getDialog(`
         <div class="errorDialogHeader">
             <a>
@@ -48,7 +52,7 @@ exports.openErrorDialog = function(error){
             </a>
         </div>
         <div>
-            <p>
+            <p class="${centralized}">
                 ${error}
             </p>
         </div>
@@ -60,11 +64,11 @@ exports.openErrorDialog = function(error){
     $('body').html(current + dialog);
 
     $('#errorDialog .errorDialogHeader a').click(function(){
-        exports.closeLoadingDialog();
+        exports.closeErrorDialog();
     })
 }
 
-exports.closeLoadingDialog = function(){
+exports.closeErrorDialog = function(){
     $('#errorDialog').fadeOut(500, function(){
         $(this).remove();
     });
