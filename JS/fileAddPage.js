@@ -21,6 +21,15 @@ let rightCol = () => {
                 <a>Use file path (Intead of keeping a copy of the file)</a>
             </label>
         </div>
+        <div id="relativePathUsingCheckBoxDiv">
+            <label>
+                <div class="check-dark">
+                    <input type="checkbox" id="relativePathUsingCheckBox">
+                    <div class="box"></div>
+                </div>
+                <a>Use relative path</a>
+            </label>
+        </div>
         <div id="selectedFilesInfo">
             <p>
                 <strong>Path: </strong> <span id="pathInfo">-</span><br>
@@ -101,7 +110,19 @@ exports.addFileBtn = function() {
         });
     }
     else{
-        fileModel.add(name, desc, filePath, tags, true);
+        if($('#relativePathUsingCheckBox').prop('checked')){
+            let basePath = path.resolve(__dirname, '../');
+            
+            let relativePath = path.relative(
+                basePath, 
+                filePath
+            );
+
+            fileModel.add(name, desc, relativePath, tags, true);
+        }
+        else{
+            fileModel.add(name, desc, filePath, tags, true);
+        }
         resetPage();
     }
     
@@ -193,6 +214,12 @@ exports.load = function() {
     $('#leftCol').html(leftCol());
     $('#leftColBtn').click(() => {
         filesViewPage.load();
+    });
+    $('#pathUsingCheckBox').change(function(){
+        if(this.checked)
+            $('#relativePathUsingCheckBoxDiv').show(500);
+        else
+            $('#relativePathUsingCheckBoxDiv').hide(500);
     });
 }
 

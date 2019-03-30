@@ -1,11 +1,15 @@
-#pathUsingCheckBoxDiv {
+#pathUsingCheckBoxDiv, #relativePathUsingCheckBoxDiv{
     margin: 20px auto;
     font-weight: bold;
     width: 80%;
     text-align: left;
 }
 
-#pathUsingCheckBoxDiv label a {
+#relativePathUsingCheckBoxDiv{
+    display: none;
+}
+
+#pathUsingCheckBoxDiv label a, #relativePathUsingCheckBoxDiv label a{
     vertical-align: super;
     margin: 0 20px;
 }
