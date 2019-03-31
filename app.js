@@ -11,8 +11,9 @@ app.once('ready', () => {
         icon: path.join(__dirname, 'Pictures/file-archiver.png')
     })
 
-    window.setMenuBarVisibility(false)
-    window.loadFile('View/main.html')
+    window.setMenuBarVisibility(false);
+    window.loadFile('View/main.html');
+    window.setTitle('File Archiver');
 
     window.once('ready-to-show', () => {
         window.show()
