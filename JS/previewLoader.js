@@ -22,7 +22,11 @@ function linkDirector(file_name, isUsePath_int){
     if(isUsePath)
         return file_name;
         
-    return path.join('../Files', file_name);
+    return path.normalize(
+        path.join(
+            __dirname, '../Files', file_name
+        )
+    );
 }
 
 exports.load = function(file){
@@ -33,13 +37,14 @@ exports.load = function(file){
     //     return '';
     //TODO fix this
 
-    let output = '';
+    let output = `<div id="openFileBtn" data-path="${link}" class="dark-inp light-inp">Open File</div>`;
     
     if(pictures.includes(format)){
-        output = getPicturePreview(link);
+        output += getPicturePreview(link);
     }
+
     if(pictures.includes(videos)){
-        output = getVideoPreview(link);
+        output += getVideoPreview(link);
     }
 
     return output;

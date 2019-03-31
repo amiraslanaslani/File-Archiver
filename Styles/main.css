@@ -84,6 +84,7 @@ body{
     /* box-shadow: 0 0 10px 0px #000; */
     font-size: 20px;
     transition: background 0.3s;
+    cursor: pointer;
 }
 
 textarea.dark-inp{
@@ -254,6 +255,11 @@ button.light-inp:hover, .light-inp:focus{
 
 #picturePreview img{
     width: 100%;
+}
+
+#openFileBtn{
+    clear: both;
+    margin: 0 auto;
 }
 
 /*

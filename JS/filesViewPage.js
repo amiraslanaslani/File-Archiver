@@ -1,7 +1,8 @@
 const fileModel = require('./Models/file.js');
 const path = require('path');
 const fs = require("fs");
-const previewLoader = require("./previewLoader.js")
+const previewLoader = require("./previewLoader.js");
+const shell = require('electron').shell;
 
 let rightCol = (files) => {
     let filesForView = [];
@@ -154,13 +155,20 @@ function maximizeInfoBox(){
             $('#fileInfoBox').data('file')
         )
     );
+
+    $("#openFileBtn").click(function(){
+        let path = $(this).data('path');
+        shell.openItem(path);
+    });
 }
 
 function minimizeInfoBox(){
     $('#maximizeButton').show();
     $('#minimizeButton').hide();
     $('#fileIconsList, #fileInfoBox').removeClass('maximized');
-    $("#filePreview").html("");
+    setTimeout(function(){
+        $("#filePreview").html("");
+    }, 1000);
 }
 
 function showLeftSide(){
