@@ -257,6 +257,15 @@ button.light-inp:hover, .light-inp:focus{
     width: 100%;
 }
 
+#videoPreview{
+    width: 100%;
+}
+
+#videoPreview video{
+    clear: both;
+    margin: 40px;
+}
+
 #openFileBtn{
     clear: both;
     margin: 0 auto;

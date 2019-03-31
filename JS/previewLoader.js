@@ -38,12 +38,13 @@ exports.load = function(file){
     //TODO fix this
 
     let output = `<div id="openFileBtn" data-path="${link}" class="dark-inp light-inp">Open File</div>`;
+    console.log(file);
     
     if(pictures.includes(format)){
         output += getPicturePreview(link);
     }
 
-    if(pictures.includes(videos)){
+    if(videos.includes(format)){
         output += getVideoPreview(link);
     }
 
@@ -59,6 +60,12 @@ function getPicturePreview(link) {
     `;
 }
 
-function getVideoPreview(file) {
-    return ``;
+function getVideoPreview(link) {
+    return `
+        <div id="videoPreview">
+            <video controls class="video-js" preload="auto" data-setup="{}">
+                <source src="${link}" type="video/mp4">
+            </video>
+        </div>
+    `;
 }
