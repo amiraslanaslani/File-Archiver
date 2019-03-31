@@ -1,6 +1,7 @@
 const fileModel = require('./Models/file.js');
 const path = require('path');
 const fs = require("fs");
+const previewLoader = require("./previewLoader.js")
 
 let rightCol = (files) => {
     let filesForView = [];
@@ -18,6 +19,7 @@ let rightCol = (files) => {
         filesForView,
         function(id){
             fileModel.loadWithID(id, (row) => {
+                $('#fileInfoBox').data('file', row);
                 fileModel.loadTagsListWithFileID(row.id, (tags) => {
                     tagsList = [];
                     tags.forEach(tag => {
@@ -56,27 +58,32 @@ let rightCol = (files) => {
 
     return `
         ${iconsView}
-        <div id="fileInfoBox">
-            <div id="fileInfoImgDiv">
-                <img id="fileInfo_picture" src="">
+        <div id="fileInfoBox" class="light-scroll">
+            <div>
+                <div id="fileInfoImgDiv">
+                    <img id="fileInfo_picture" src="">
+                </div>
+                <div id="fileInfoTextDiv">
+                    <strong>Name:</strong> <span id="fileInfo_name"></span><br>
+                    <strong>File Type:</strong> <span id="fileInfo_type"></span><br>
+                    <strong>File Size:</strong> <span id="fileInfo_size"></span><br>
+                    <strong>Description:</strong> <span id="fileInfo_desc"></span><br>
+                    <strong>Tags:</strong> <span id="fileInfo_tags"></span>
+                </div>
+                <div id="buttonBar">
+                    <a id="maximizeButton">
+                        🗖
+                    </a>
+                    <a id="minimizeButton">
+                        🗕
+                    </a>
+                    <a id="closeButton">
+                        ×
+                    </a>
+                </div>
             </div>
-            <div id="fileInfoTextDiv">
-                <strong>Name:</strong> <span id="fileInfo_name"></span><br>
-                <strong>File Type:</strong> <span id="fileInfo_type"></span><br>
-                <strong>File Size:</strong> <span id="fileInfo_size"></span><br>
-                <strong>Description:</strong> <span id="fileInfo_desc"></span><br>
-                <strong>Tags:</strong> <span id="fileInfo_tags"></span>
-            </div>
-            <div id="buttonBar">
-                <a id="maximizeButton">
-                    🗖
-                </a>
-                <a id="minimizeButton">
-                    🗕
-                </a>
-                <a id="closeButton">
-                    ×
-                </a>
+            <div id="filePreview">
+
             </div>
         </div>
     `;
@@ -141,12 +148,19 @@ function maximizeInfoBox(){
     $('#maximizeButton').hide();
     $('#minimizeButton').show();
     $('#fileIconsList, #fileInfoBox').addClass('maximized');
+
+    $("#filePreview").html(
+        previewLoader.load(
+            $('#fileInfoBox').data('file')
+        )
+    );
 }
 
 function minimizeInfoBox(){
     $('#maximizeButton').show();
     $('#minimizeButton').hide();
     $('#fileIconsList, #fileInfoBox').removeClass('maximized');
+    $("#filePreview").html("");
 }
 
 function showLeftSide(){

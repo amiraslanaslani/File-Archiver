@@ -1,7 +1,7 @@
 
 function loadBaseStructure(innerHtml){
     return `
-        <div id="fileIconsList">
+        <div id="fileIconsList" class="light-scroll">
             ${innerHtml}
         </div>
         <script>

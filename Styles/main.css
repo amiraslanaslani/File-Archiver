@@ -160,6 +160,7 @@ button.light-inp:hover, .light-inp:focus{
 #fileInfoBox{
     display: none;
     transition: height ease-in-out 1s;
+    overflow-y: auto;
 }
 
 #fileInfoBox.infoBoxIsOpened{
@@ -199,6 +200,7 @@ button.light-inp:hover, .light-inp:focus{
     padding-top: 10px;
     position: absolute;
     right: 0;
+    padding-right: 20px;
 }
 
 #minimizeButton{
@@ -242,4 +244,29 @@ button.light-inp:hover, .light-inp:focus{
 .errorText{
     color: #c0392b;
     font-weight: bold;
+}
+
+#picturePreview{
+    background-image: url(../Pictures/ch-bg.png);
+    clear: both;
+    margin: 40px;
+}
+
+#picturePreview img{
+    width: 100%;
+}
+
+/*
+ * Scroll Style
+ */
+
+.light-scroll::-webkit-scrollbar
+{
+    width: 12px;
+}
+ 
+.light-scroll::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-color: #353b48;
 }
