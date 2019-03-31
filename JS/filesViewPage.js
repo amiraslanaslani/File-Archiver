@@ -32,7 +32,7 @@ let rightCol = (files) => {
                     file_path = row.using_path == 1 ? '' : './Files/';
                     file_path += row.file_name;
                     
-                    size = `<a class="errorText">This file is not exists!</a>`;
+                    size = `<a class="errorText">This file does not exist!</a>`;
                     if(fs.existsSync(file_path)){
                         let stats = fs.statSync(file_path);
                         size = `${stats.size} KB (${stats.size / 1024} MB)`

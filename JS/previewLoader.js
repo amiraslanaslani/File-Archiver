@@ -33,11 +33,10 @@ exports.load = function(file){
     let format = path.extname(file.file_name).replace('.', "").toLowerCase();
     let link = linkDirector(file.file_name, file.using_path);
 
-    // if(! fs.existsSync(link))
-    //     return '';
-    //TODO fix this
+    if(! fs.existsSync(link))
+        return '<div class="error-box"><i class="fas fa-exclamation-triangle"></i> This file does not exist!</div>';
 
-    let output = `<div id="openFileBtn" data-path="${link}" class="dark-inp light-inp"> <i class="fas fa-external-link-alt"></i> Open File</div>`;
+    let output = `<div id="openFileBtn" data-path="${link}" class="dark-inp light-inp"> <i class="fas fa-external-link-alt"></i> Open File</div>`; //TODO add save button
     console.log(file);
     
     if(pictures.includes(format)){

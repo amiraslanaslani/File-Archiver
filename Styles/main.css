@@ -270,6 +270,17 @@ button.light-inp:hover, .light-inp:focus{
     margin: 0 auto;
 }
 
+.error-box{
+    clear: both;
+    background-color: #e74c3c;
+    padding: 15px;
+    color: #ecf0f1;
+    margin: 40px;
+    font-weight: bold;
+    border: 1px solid #c0392b;
+    border-radius: 10px;
+}
+
 /*
  * Scroll Style
  */
