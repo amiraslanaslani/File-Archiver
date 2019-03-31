@@ -265,8 +265,18 @@ button.light-inp:hover, .light-inp:focus{
     margin: 40px;
 }
 
-#openFileBtn{
+#infoBoxButtons{
     clear: both;
+    text-align: center;
+}
+
+#infoBoxButtons .btn{
+    width: 40%;
+    display: inline-block;
+    margin: 0 20px;
+}
+
+#openFileBtn{
     margin: 0 auto;
 }
 
@@ -278,7 +288,7 @@ button.light-inp:hover, .light-inp:focus{
     margin: 40px;
     font-weight: bold;
     border: 1px solid #c0392b;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 /*

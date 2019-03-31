@@ -160,6 +160,11 @@ function maximizeInfoBox(){
         let path = $(this).data('path');
         shell.openItem(path);
     });
+
+    $("#showFileInFolder").click(function(){
+        let path = $(this).data('path');
+        shell.showItemInFolder(path);
+    });
 }
 
 function minimizeInfoBox(){

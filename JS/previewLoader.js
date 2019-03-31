@@ -36,8 +36,16 @@ exports.load = function(file){
     if(! fs.existsSync(link))
         return '<div class="error-box"><i class="fas fa-exclamation-triangle"></i> This file does not exist!</div>';
 
-    let output = `<div id="openFileBtn" data-path="${link}" class="dark-inp light-inp"> <i class="fas fa-external-link-alt"></i> Open File</div>`; //TODO add save button
-    console.log(file);
+    let output = `
+        <div id="infoBoxButtons">
+            <div id="openFileBtn" data-path="${link}" class="dark-inp light-inp btn"> 
+                <i class="fas fa-external-link-alt"></i> Open File
+            </div>
+            <div id="showFileInFolder" data-path="${link}" class="dark-inp light-inp btn">
+                <i class="fas fa-folder-open"></i> Show File in Directory
+            </div>
+        </div>
+    `;
     
     if(pictures.includes(format)){
         output += getPicturePreview(link);
