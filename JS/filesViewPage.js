@@ -73,13 +73,13 @@ let rightCol = (files) => {
                 </div>
                 <div id="buttonBar">
                     <a id="maximizeButton">
-                        🗖
+                        <i class="far fa-window-maximize"></i>
                     </a>
                     <a id="minimizeButton">
-                        🗕
+                        <i class="fas fa-window-minimize"></i>
                     </a>
                     <a id="closeButton">
-                        ×
+                        <i class="fas fa-times"></i>
                     </a>
                 </div>
             </div>
@@ -120,7 +120,7 @@ let leftCol = (tags) => {
         </div>
         <div id="leftColBtn">
             <span>
-                ➕ Add New File
+                <i class="fas fa-plus"></i> Add New File
             </span>
         </div>
         <script>

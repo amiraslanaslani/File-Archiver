@@ -1,6 +1,7 @@
 @import 'viewPageLeftCol.css';
 @import 'addPageRight.css';
 @import 'dialogs.css';
+@import 'font-awesome.css';
 
 body{
     margin: 0;
@@ -20,8 +21,10 @@ body{
 }
 
 #footer span{
-    margin: 10px 0 0 20px;
+    margin: 10px 20px;
     display: block;
+    text-align: right;
+    font-weight: bold;
 }
 
 .col{
@@ -216,10 +219,6 @@ button.light-inp:hover, .light-inp:focus{
     font-weight: bold;
     cursor: pointer;
     font-size: 20px;
-}
-
-#fileInfoBox #closeButton{
-    font-size: 28px;
 }
 
 #fileIconsList.infoBoxIsOpened.maximized{

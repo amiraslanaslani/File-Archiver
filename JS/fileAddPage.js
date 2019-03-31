@@ -10,7 +10,7 @@ let rightCol = () => {
     return `
         <br><br><br>
         <button class="dark-inp light-inp" onClick="fileAddPage.selectFile()">
-            Select File
+            <i class="fas fa-file-upload"></i> Select File
         </button>
         <div id="pathUsingCheckBoxDiv">
             <label>
@@ -57,7 +57,7 @@ let leftCol = () => {
         </div>
         <div id="leftColBtn">
             <span>
-                ◀ &nbsp; Back
+                <i class="fas fa-chevron-left"></i> &nbsp; Back
             </span>
         </div>
         <script>

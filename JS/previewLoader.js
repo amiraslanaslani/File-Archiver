@@ -37,7 +37,7 @@ exports.load = function(file){
     //     return '';
     //TODO fix this
 
-    let output = `<div id="openFileBtn" data-path="${link}" class="dark-inp light-inp">Open File</div>`;
+    let output = `<div id="openFileBtn" data-path="${link}" class="dark-inp light-inp"> <i class="fas fa-external-link-alt"></i> Open File</div>`;
     console.log(file);
     
     if(pictures.includes(format)){
