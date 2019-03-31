@@ -1,4 +1,5 @@
 const {app, BrowserWindow} = require('electron')
+var path = require('path')
 
 app.once('ready', () => {
     let window = new BrowserWindow({
@@ -6,7 +7,8 @@ app.once('ready', () => {
         height: 600,
         minWidth: 700,
         minHeight: 500,
-        frame: true
+        frame: true,
+        icon: path.join(__dirname, 'Pictures/file-archiver.png')
     })
 
     window.setMenuBarVisibility(false)
