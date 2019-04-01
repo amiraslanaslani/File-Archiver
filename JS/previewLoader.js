@@ -41,7 +41,7 @@ exports.load = function(file){
 
     let output = viewLoader.load(
         'preview_loader/base.html',
-        {link}
+        {link, 'id': file.id}
     );
     
     if(pictures.includes(format)){

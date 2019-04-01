@@ -81,6 +81,27 @@ exports.loadWithID = function(id, callback){
     baseModel.loadWithID('files', id, callback);
 }
 
+exports.removeFromID = function(id, callback){
+    let tag_query = "DELETE FROM files_tags WHERE file_id = ?";
+    let file_query = "DELETE FROM files WHERE id = ?";
+
+    baseModel.db.run(tag_query, id, (err) => {
+        if(err){
+            dialogs.openErrorDialog(err);
+        }
+        else{
+            baseModel.db.run(file_query, id, (err) => {
+                if(err){
+                    dialogs.openErrorDialog(err);
+                }
+                else{
+                    callback()
+                }
+            });
+        }
+    });
+}
+
 exports.load = function(){
     
 }

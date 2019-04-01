@@ -121,6 +121,14 @@ function maximizeInfoBox(){
     //TODO add edit file btn's action
 
     //TODO add remove file btn's action
+    $("#removeFile").click(function(){
+        fileModel.removeFromID(
+            $('#fileInfoBox').data('file').id,
+            function(){
+                refreshView()
+            }
+        );
+    });
 }
 
 function minimizeInfoBox(){
@@ -137,7 +145,7 @@ function showLeftSide(){
         $('#leftCol').html(leftCol(tags));
 
         filesViewPage.leftPanelLoad();
-        
+
         $('#leftColBtn').click(() => {
             fileAddPage.load();
         });
