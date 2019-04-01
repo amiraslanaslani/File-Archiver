@@ -265,19 +265,16 @@ button.light-inp:hover, .light-inp:focus{
     margin: 40px;
 }
 
-#infoBoxButtons{
+.infoBoxButtons{
     clear: both;
     text-align: center;
+    margin: 20px 0px;
 }
 
-#infoBoxButtons .btn{
+.infoBoxButtons .btn{
     width: 40%;
     display: inline-block;
     margin: 0 20px;
-}
-
-#openFileBtn{
-    margin: 0 auto;
 }
 
 .error-box{

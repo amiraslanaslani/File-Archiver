@@ -37,12 +37,20 @@ exports.load = function(file){
         return '<div class="error-box"><i class="fas fa-exclamation-triangle"></i> This file does not exist!</div>';
 
     let output = `
-        <div id="infoBoxButtons">
+        <div class="infoBoxButtons">
             <div id="openFileBtn" data-path="${link}" class="dark-inp light-inp btn"> 
                 <i class="fas fa-external-link-alt"></i> Open File
             </div>
             <div id="showFileInFolder" data-path="${link}" class="dark-inp light-inp btn">
                 <i class="fas fa-folder-open"></i> Show File in Directory
+            </div>
+        </div>
+        <div class="infoBoxButtons">
+            <div id="editFile" data-path="${link}" class="dark-inp light-inp btn">
+                <i class="fas fa-edit"></i> Edit File
+            </div>
+            <div id="removeFile" data-path="${link}" class="dark-inp light-inp btn">
+                <i class="fas fa-trash-alt"></i> Remove File
             </div>
         </div>
     `;

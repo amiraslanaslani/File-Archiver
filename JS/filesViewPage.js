@@ -131,7 +131,6 @@ let leftCol = (tags) => {
 
 function showRightSide(selectedTags = [], searchString = ''){
     fileModel.loadFilesFromTagAndSearchString(selectedTags, searchString, (rows) => {
-        // console.log(rows);
         $('#rightCol').html(rightCol(rows));
         $('#closeButton').click(() => {
             closeInfoBox();
@@ -165,6 +164,10 @@ function maximizeInfoBox(){
         let path = $(this).data('path');
         shell.showItemInFolder(path);
     });
+
+    //TODO add edit file btn's action
+
+    //TODO add remove file btn's action
 }
 
 function minimizeInfoBox(){
