@@ -1,33 +1,18 @@
+const viewLoader = require('./viewLoader.js');
 
 function getDialog(box, id){
-    return `
-        <div class="dialog" id="${id}">
-            <div class="dialogHelper">
-                <div class="dialogBox">
-                    ${box}
-                </div>
-            </div>
-        </div>
-    `;
+    return viewLoader.load(
+        'dialogs/main.html',
+        {box, id}
+    );
 }
 
 exports.openLoadingDialog = function(){
     
-    let dialog = getDialog(`
-        <div id="mainDialogText">
-            Please Wait
-        </div>
-        <div id="fountainG">
-            <div id="fountainG_1" class="fountainG"></div>
-            <div id="fountainG_2" class="fountainG"></div>
-            <div id="fountainG_3" class="fountainG"></div>
-            <div id="fountainG_4" class="fountainG"></div>
-            <div id="fountainG_5" class="fountainG"></div>
-            <div id="fountainG_6" class="fountainG"></div>
-            <div id="fountainG_7" class="fountainG"></div>
-            <div id="fountainG_8" class="fountainG"></div>
-        </div>`,
-        'loadingDialog'
+    let dialog = getDialog(
+        viewLoader.load(
+            'dialogs/loading.html'
+        ), 'loadingDialog'
     );
 
     let current = $('body').html();
@@ -45,18 +30,11 @@ exports.openErrorDialog = function(error, isCentralized = false){
     if(isCentralized)
         centralized = 'centralized';
 
-    let dialog = getDialog(`
-        <div class="errorDialogHeader">
-            <a>
-                ×
-            </a>
-        </div>
-        <div>
-            <p class="${centralized}">
-                ${error}
-            </p>
-        </div>
-        `,
+    let dialog = getDialog(
+        viewLoader.load(
+            'dialogs/error.html',
+            {centralized, error}
+        ),
         "errorDialog"
     );
 

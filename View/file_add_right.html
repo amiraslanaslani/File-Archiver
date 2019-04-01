@@ -1,0 +1,31 @@
+<br><br><br>
+<button class="dark-inp light-inp" onClick="fileAddPage.selectFile()">
+    <i class="fas fa-file-upload"></i> Select File
+</button>
+<div id="pathUsingCheckBoxDiv">
+    <label>
+        <div class="check-dark">
+            <input type="checkbox" id="pathUsingCheckBox">
+            <div class="box"></div>
+        </div>
+        <a>Use file path (Intead of keeping a copy of the file)</a>
+    </label>
+</div>
+<div id="relativePathUsingCheckBoxDiv">
+    <label>
+        <div class="check-dark">
+            <input type="checkbox" id="relativePathUsingCheckBox">
+            <div class="box"></div>
+        </div>
+        <a>Use relative path</a>
+    </label>
+</div>
+<div id="selectedFilesInfo">
+    <p>
+        <strong>Path: </strong> <span id="pathInfo">-</span><br>
+        <strong>File Size: </strong> <span id="sizeInfo">-</span><br>
+        <strong>Tags: </strong>
+    </p>
+    <div id="tagsDiv">
+    </div>
+</div>

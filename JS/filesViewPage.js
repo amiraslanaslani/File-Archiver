@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require("fs");
 const previewLoader = require("./previewLoader.js");
 const shell = require('electron').shell;
+const viewLoader = require('./viewLoader.js');
 
 let rightCol = (files) => {
     let filesForView = [];
@@ -14,7 +15,7 @@ let rightCol = (files) => {
             type: 'file',
             name: file.name
         });
-    });name
+    });
 
     let iconsView = showFileIcons.load(
         filesForView,
@@ -57,76 +58,28 @@ let rightCol = (files) => {
         }
     );
 
-    return `
-        ${iconsView}
-        <div id="fileInfoBox" class="light-scroll">
-            <div>
-                <div id="fileInfoImgDiv">
-                    <img id="fileInfo_picture" src="">
-                </div>
-                <div id="fileInfoTextDiv">
-                    <strong>Name:</strong> <span id="fileInfo_name"></span><br>
-                    <strong>File Type:</strong> <span id="fileInfo_type"></span><br>
-                    <strong>File Size:</strong> <span id="fileInfo_size"></span><br>
-                    <strong>Description:</strong> <span id="fileInfo_desc"></span><br>
-                    <strong>Tags:</strong> <span id="fileInfo_tags"></span>
-                </div>
-                <div id="buttonBar">
-                    <a id="maximizeButton">
-                        <i class="far fa-window-maximize"></i>
-                    </a>
-                    <a id="minimizeButton">
-                        <i class="fas fa-window-minimize"></i>
-                    </a>
-                    <a id="closeButton">
-                        <i class="fas fa-times"></i>
-                    </a>
-                </div>
-            </div>
-            <div id="filePreview">
-
-            </div>
-        </div>
-    `;
+    return viewLoader.load(
+        'file_view_right.html', 
+        {iconsView}
+    );
 }
 
 let leftCol = (tags) => {
-
     let content = '';
 
     for(let tagID in tags){
         let tag = tags[tagID].tag;
         let lowercase_tag = tag.toLowerCase();
-        content += `
-            <span data-tag="${lowercase_tag}">
-                <div class="check-light">
-                    <input type="checkbox" data-tag="${tag}">
-                    <div class="box"></div>
-                </div>
-                <a>${tag}</a>
-            </span>
-        `;
+        content += viewLoader.load(
+            'file_view_left/repeatable.html', 
+            {lowercase_tag, tag}
+        );
     }
 
-    return `
-        <div id="leftColTopContent">
-            <div id="tagSelection">
-                <input class="dark-inp" type="text" id="fileSearch" placeholder="File Search"><br>
-                <input class="dark-inp" type="text" id="tagSearch" placeholder="Tag Search">
-                <div id="tagsBox">
-                    ${content}
-                </div>
-            </div>
-        </div>
-        <div id="leftColBtn">
-            <span>
-                <i class="fas fa-plus"></i> Add New File
-            </span>
-        </div>
-        <script>
-            filesViewPage.leftPanelLoad();
-        </script>
-    `;
+    return viewLoader.load(
+        'file_view_left/main.html', 
+        {content}
+    );
 }
 
 function showRightSide(selectedTags = [], searchString = ''){
@@ -183,6 +136,8 @@ function showLeftSide(){
     fileModel.loadTagsList(function(tags){
         $('#leftCol').html(leftCol(tags));
 
+        filesViewPage.leftPanelLoad();
+        
         $('#leftColBtn').click(() => {
             fileAddPage.load();
         });

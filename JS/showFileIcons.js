@@ -1,15 +1,10 @@
+const viewLoader = require('./viewLoader.js');
 
 function loadBaseStructure(innerHtml){
-    return `
-        <div id="fileIconsList" class="light-scroll">
-            ${innerHtml}
-        </div>
-        <script>
-            $('.fileObject').click(function(){
-                showFileIcons.checkAsSelected(this)
-            });
-        </script>
-    `;
+    return viewLoader.load(
+        'file_icons/base.html',
+        {innerHtml}
+    );
 }
 
 exports.getFileImage = function(file){
@@ -41,16 +36,14 @@ exports.load = (filesList, checkAction) => {
         var file = filesList[fileID];
         var img = exports.getFileImage(file);
 
-        content += `
-            <div class="fileObject" data-id="${file.id}">
-                <div class="fileImgDiv">
-                    <img src="${img}">
-                </div>
-                <div class="fileTextDiv">
-                    ${file.name}
-                </div>
-            </div>
-        `;
+        content += viewLoader.load(
+            'file_icons/object.html',
+            {
+                img,
+                'file_name': file.name,
+                'file_id': file.id
+            }
+        );
     }
 
     return loadBaseStructure(content);

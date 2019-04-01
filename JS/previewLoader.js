@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs');
+const viewLoader = require('./viewLoader.js');
 
 var pictures = [
     'jpg',
@@ -34,26 +35,14 @@ exports.load = function(file){
     let link = linkDirector(file.file_name, file.using_path);
 
     if(! fs.existsSync(link))
-        return '<div class="error-box"><i class="fas fa-exclamation-triangle"></i> This file does not exist!</div>';
+        return viewLoader.load(
+            'preview_loader/error.html'
+        );
 
-    let output = `
-        <div class="infoBoxButtons">
-            <div id="openFileBtn" data-path="${link}" class="dark-inp light-inp btn"> 
-                <i class="fas fa-external-link-alt"></i> Open File
-            </div>
-            <div id="showFileInFolder" data-path="${link}" class="dark-inp light-inp btn">
-                <i class="fas fa-folder-open"></i> Show File in Directory
-            </div>
-        </div>
-        <div class="infoBoxButtons">
-            <div id="editFile" data-path="${link}" class="dark-inp light-inp btn">
-                <i class="fas fa-edit"></i> Edit File
-            </div>
-            <div id="removeFile" data-path="${link}" class="dark-inp light-inp btn">
-                <i class="fas fa-trash-alt"></i> Remove File
-            </div>
-        </div>
-    `;
+    let output = viewLoader.load(
+        'preview_loader/base.html',
+        {link}
+    );
     
     if(pictures.includes(format)){
         output += getPicturePreview(link);
@@ -67,20 +56,15 @@ exports.load = function(file){
 }
 
 function getPicturePreview(link) {
-    
-    return `
-        <div id="picturePreview">
-            <img src="${link}">
-        </div>
-    `;
+    return viewLoader.load(
+        'preview_loader/picture.html',
+        {link}
+    );
 }
 
 function getVideoPreview(link) {
-    return `
-        <div id="videoPreview">
-            <video controls class="video-js" preload="auto" data-setup="{}">
-                <source src="${link}" type="video/mp4">
-            </video>
-        </div>
-    `;
+    return viewLoader.load(
+        'preview_loader/video.html',
+        {link}
+    );
 }

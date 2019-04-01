@@ -2,70 +2,10 @@ const { dialog } = require('electron').remote;
 const fileModel = require('./Models/file.js');
 const dialogs = require('./dialogs.js');
 const path = require('path');
+const viewLoader = require('./viewLoader.js');
 
 var fs = require('fs');
 var isFileSelected = false;
-
-let rightCol = () => {
-    return `
-        <br><br><br>
-        <button class="dark-inp light-inp" onClick="fileAddPage.selectFile()">
-            <i class="fas fa-file-upload"></i> Select File
-        </button>
-        <div id="pathUsingCheckBoxDiv">
-            <label>
-                <div class="check-dark">
-                    <input type="checkbox" id="pathUsingCheckBox">
-                    <div class="box"></div>
-                </div>
-                <a>Use file path (Intead of keeping a copy of the file)</a>
-            </label>
-        </div>
-        <div id="relativePathUsingCheckBoxDiv">
-            <label>
-                <div class="check-dark">
-                    <input type="checkbox" id="relativePathUsingCheckBox">
-                    <div class="box"></div>
-                </div>
-                <a>Use relative path</a>
-            </label>
-        </div>
-        <div id="selectedFilesInfo">
-            <p>
-                <strong>Path: </strong> <span id="pathInfo">-</span><br>
-                <strong>File Size: </strong> <span id="sizeInfo">-</span><br>
-                <strong>Tags: </strong>
-            </p>
-            <div id="tagsDiv">
-            </div>
-        </div>
-    `
-}
-
-let leftCol = () => {
-    return `
-        <div id="leftColTopContent">
-            <input id="filePath" class="dark-inp" type="text" placeholder="File Path" value="" disabled="disabled">
-            <br>
-            <input id="fileName" class="dark-inp" type="text" placeholder="Name" value="">
-            <br>
-            <input id="fileTags" class="dark-inp" type="text" placeholder="Tags" value="">
-            <br>
-            <textarea id="fileDesc" class="dark-inp" placeholder="Description"></textarea>
-            <br>
-            <button id="addFileBtn" class="dark-inp">Add File</button>
-        </div>
-        <div id="leftColBtn">
-            <span>
-                <i class="fas fa-chevron-left"></i> &nbsp; Back
-            </span>
-        </div>
-        <script>
-            $('#fileTags').keypress(fileAddPage.tagsKeyPress)
-            $('#addFileBtn').click(fileAddPage.addFileBtn)
-        </script>
-    `
-}
 
 function resetPage(){
     $('#fileName').val('');
@@ -210,8 +150,14 @@ exports.selectFile = function() {
 }
 
 exports.load = function() {
-    $('#rightCol').html(rightCol());
-    $('#leftCol').html(leftCol());
+    document.getElementById("rightCol").innerHTML = viewLoader.load('file_add_right.html');
+    document.getElementById("leftCol").innerHTML = viewLoader.load('file_add_left.html');
+    
+    fileAddPage.leftColLoad();
+
+    $('#fileTags').keypress(fileAddPage.tagsKeyPress);
+    $('#addFileBtn').click(fileAddPage.addFileBtn);
+
     $('#leftColBtn').click(() => {
         filesViewPage.load();
     });
