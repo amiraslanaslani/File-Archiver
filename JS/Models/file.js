@@ -4,12 +4,7 @@ const dialogs = require('../dialogs.js');
 exports.add = function(passed_name, passed_description, passed_filename, passed_tags, using_path){
 
     let callback = (id) => {
-        for(let tag_name in passed_tags){
-            baseModel.addToDatabase('files_tags',{
-                file_id: id,
-                tag: passed_tags[tag_name]
-            }, null);
-        }
+        exports.addTags(id, passed_tags);
     };
 
     let using_path_int = using_path ? 1 : 0;
@@ -20,6 +15,28 @@ exports.add = function(passed_name, passed_description, passed_filename, passed_
         file_name: passed_filename,
         using_path: using_path_int
     }, callback);
+}
+
+exports.addTags = function(id, passed_tags){
+    for(let tag_name in passed_tags){
+        baseModel.addToDatabase('files_tags',{
+            file_id: id,
+            tag: passed_tags[tag_name]
+        }, null);
+    }
+}
+
+exports.addArrayTags = function(file_id, tags, callback){
+    let tagsInMyStyle = [];
+    for(let i in tags){
+        let tag = tags[i];
+        tagsInMyStyle.push({
+            file_id,
+            tag
+        });
+    }
+
+    baseModel.addArrayToDatabase('files_tags', tagsInMyStyle, callback);
 }
 
 exports.loadFilesFromTagAndSearchString = function(tags = [], search = '', callback = () => {}){
@@ -77,29 +94,39 @@ exports.loadTagsListWithFileID = function(fileID, callback){
     });
 }
 
+exports.removeTagsFromID = function(id, callback){
+    let tag_query = "DELETE FROM files_tags WHERE file_id = ?";
+    baseModel.db.run(tag_query, id, (err) => {
+        if(err){
+            dialogs.openErrorDialog(err);
+        }
+        else if(callback){
+            callback();
+        }
+    });
+}
+
 exports.loadWithID = function(id, callback){
     baseModel.loadWithID('files', id, callback);
 }
 
 exports.removeFromID = function(id, callback){
-    let tag_query = "DELETE FROM files_tags WHERE file_id = ?";
-    let file_query = "DELETE FROM files WHERE id = ?";
+    exports.removeTagsFromID(id, () => {
+        let file_query = "DELETE FROM files WHERE id = ?";
 
-    baseModel.db.run(tag_query, id, (err) => {
-        if(err){
-            dialogs.openErrorDialog(err);
-        }
-        else{
-            baseModel.db.run(file_query, id, (err) => {
-                if(err){
-                    dialogs.openErrorDialog(err);
-                }
-                else{
-                    callback()
-                }
-            });
-        }
+        baseModel.db.run(file_query, id, (err) => {
+            if(err){
+                dialogs.openErrorDialog(err);
+            }
+            else if(callback){
+                callback()
+            }
+        });
     });
+}
+
+exports.updateFile = function(id, updates, callback){
+    baseModel.updateRow('files', id, updates, callback);
 }
 
 exports.load = function(){

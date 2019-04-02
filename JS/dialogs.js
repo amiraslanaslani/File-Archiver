@@ -60,7 +60,7 @@ const fileModel = require('./Models/file.js');
 exports.openContentDialogWithDefaultParameters = function(id){
     fileModel.loadWithID(id, (row) => {
         fileModel.loadTagsListWithFileID(row.id, (tags) => {
-            exports.openContentDialog(row.name, row.description);
+            exports.openContentDialog(row);
             
             for(let i in tags){
                 let tag = tags[i];
@@ -72,14 +72,17 @@ exports.openContentDialogWithDefaultParameters = function(id){
 
 var contentDialogTags = [];
 var dialogTagsNumber = 0;
-exports.openContentDialog = function(name, desc){
+exports.openContentDialog = function(file){
     contentDialogTags = [];
     dialogTagsNumber = 0;
 
     let dialog = getDialog(
         viewLoader.load(
             'dialogs/content.html',
-            {name, desc}
+            {
+                'name': file.name, 
+                'desc': file.description
+            }
         ),
         "contentDialog",
         "contentDialog"
@@ -92,8 +95,21 @@ exports.openContentDialog = function(name, desc){
     });
 
     $('#dialogSave').click(() => {
-        
-        
+        fileModel.updateFile(
+            file.id,
+            {
+                name: $('#dialogFileName').val(),
+                description: $('#dialogFileDesc').val()
+            }
+        );
+
+        exports.closeContentDialog();
+
+        fileModel.removeTagsFromID(file.id, () => {
+            fileModel.addArrayTags(file.id, contentDialogTags, () => {
+                filesViewPage.refreshView();
+            });
+        });
     });
 
     $('#dialogFileTags').keypress(contentDialogTagsKeyPress);
@@ -119,6 +135,7 @@ function contentDialogAddTag(tag){
         </span>`
     );
 
+    $('.tagsBox span a').unbind("click").click(removeTag);
     contentDialogTags.push(tag);
 }
 
@@ -142,7 +159,6 @@ function contentDialogTagsKeyPress(ev) {
         let tagName = $('#dialogFileTags').val().replace(',','').trim();
         if(tagName.length > 0){
             contentDialogAddTag(tagName);
-            $('.tagsBox span a').click(removeTag);
         }
 
         $('#dialogFileTags').val('');

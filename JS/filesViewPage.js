@@ -119,7 +119,6 @@ function maximizeInfoBox(){
         shell.showItemInFolder(path);
     });
 
-    //TODO add edit file btn's action
     $('#editFile').click(function(){
         dialogs.openContentDialogWithDefaultParameters(
             $('#fileInfoBox').data('file').id
@@ -130,7 +129,7 @@ function maximizeInfoBox(){
         fileModel.removeFromID(
             $('#fileInfoBox').data('file').id,
             function(){
-                refreshView()
+                exports.refreshView()
             }
         );
     });
@@ -172,7 +171,7 @@ function closeInfoBox(){
     $('#fileInfoBox, #fileIconsList').removeClass('infoBoxIsOpened');
 }
 
-function refreshView(){
+exports.refreshView = function(){
     let searchString = $('#fileSearch').val().trim();
     let selectedTags = $('#tagsBox input:checked').map(function() {
         return $(this).data('tag');
@@ -187,11 +186,11 @@ exports.leftPanelLoad = function(){
     });
 
     $('#tagsBox span input[type=checkbox]').click(function(){
-        refreshView();
+        exports.refreshView();
     })
 
     $('#fileSearch').keyup(function(){
-        refreshView();
+        exports.refreshView();
     })
 
     $('#tagSearch').keyup(function(){
