@@ -4,6 +4,7 @@ const fs = require("fs");
 const previewLoader = require("./previewLoader.js");
 const shell = require('electron').shell;
 const viewLoader = require('./viewLoader.js');
+const dialogs = require('./dialogs.js');
 
 let rightCol = (files) => {
     let filesForView = [];
@@ -119,8 +120,12 @@ function maximizeInfoBox(){
     });
 
     //TODO add edit file btn's action
+    $('#editFile').click(function(){
+        dialogs.openContentDialogWithDefaultParameters(
+            $('#fileInfoBox').data('file').id
+        );
+    })
 
-    //TODO add remove file btn's action
     $("#removeFile").click(function(){
         fileModel.removeFromID(
             $('#fileInfoBox').data('file').id,

@@ -28,19 +28,21 @@
     padding: 50px 0 20px;
 }
 
-#errorDialog .errorDialogHeader{
+#errorDialog .errorDialogHeader,
+#contentDialog .contentDialogHeader{
 	height: 40px;
     width: 100%;
     background-color: rgb(24, 24, 28);
     border-bottom: 1px solid #111;
 }
 
-#errorDialog .errorDialogHeader a{
+#errorDialog .errorDialogHeader a,
+#contentDialog .contentDialogHeader a{
 	font-weight: bold;
 	cursor: pointer;
-	font-size: 31px;
+	font-size: 25px;
     float: right;
-    padding: 0 20px;
+    padding: 9px 20px;
 }
 
 #errorDialog div p{
@@ -51,6 +53,58 @@
 	text-align: center;
     font-size: 20px;
     padding: 40px 0;
+}
+
+.dialogBox.contentDialog{
+	width: 500px;
+    height: 400px;
+}
+
+.contentDialogButtons .dark-inp{
+	background-color: rgb(24, 24, 28);
+    height: 50px;
+    width: 120px;
+    margin: 5px 10px;
+	background-color: rgb(27, 27, 32);
+	color: rgb(22,160,132);
+}
+
+.contentDialogButtons{
+    border-top: 1px solid #111;
+    text-align: right;
+    margin: auto 0 0 0;
+}
+
+.contentDialogContentBox{
+	height: 300px;
+	text-align: center;
+}
+
+.contentDialogContentBox .dark-inp{
+	background-color: rgb(24, 24, 28);
+	margin: 0px 0 10px;
+}
+
+.contentDialogContentBox textarea.dark-inp{
+	height: 80px;
+    max-height: 80px;
+    min-height: 80px;
+}
+
+.tagsBox{
+    text-align: left;
+    overflow-y: auto;
+    margin: 0px 40px;
+    height: 100px;
+}
+
+.tagsBox span{
+    background-color: #16a085;
+    padding: 5px 10px;
+    color: #1c1e20;
+    border-radius: 5px;
+    margin: 10px 5px;
+    display: inline-block;
 }
 
 /*

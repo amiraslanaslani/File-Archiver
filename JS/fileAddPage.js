@@ -101,9 +101,9 @@ exports.removeTag = function() {
     $("#" + id).remove();
 
     for(var i = 0;i < tags.length;i ++){
-       if (tags[i] == value) {
-         tags.splice(i, 1);
-       }
+        if (tags[i] == value) {
+            tags.splice(i, 1);
+        }
     }
 }
 
