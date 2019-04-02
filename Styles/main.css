@@ -22,9 +22,16 @@ body{
 
 #footer span{
     margin: 10px 20px;
-    display: block;
     text-align: right;
     font-weight: bold;
+}
+
+#footer span#aslanLOL{
+    float: right;
+}
+
+#footer span#versionAndLic{
+    float: left;
 }
 
 .col{
@@ -262,7 +269,7 @@ button.light-inp:hover, .light-inp:focus{
 
 #videoPreview video{
     clear: both;
-    margin: 40px;
+    width: 90%;
 }
 
 .infoBoxButtons{

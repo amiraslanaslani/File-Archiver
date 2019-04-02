@@ -152,8 +152,6 @@ exports.selectFile = function() {
 exports.load = function() {
     document.getElementById("rightCol").innerHTML = viewLoader.load('file_add_right.html');
     document.getElementById("leftCol").innerHTML = viewLoader.load('file_add_left.html');
-    
-    fileAddPage.leftColLoad();
 
     $('#fileTags').keypress(fileAddPage.tagsKeyPress);
     $('#addFileBtn').click(fileAddPage.addFileBtn);
