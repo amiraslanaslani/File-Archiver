@@ -14,9 +14,8 @@ exports.openLoadingDialog = function(){
             'dialogs/loading.html'
         ), 'loadingDialog'
     );
-
-    let current = $('body').html();
-    $('body').html(current + dialog);
+    
+    $('body').append(dialog);
 }
 
 exports.closeLoadingDialog = function(){
