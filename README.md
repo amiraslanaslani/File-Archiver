@@ -5,6 +5,21 @@
 File Archiver is a simple program under NodeJS and Electron that helps you archive files and stick tags on them.
 You can search by tags or name around files that you added to archive.
 
+## How to run?
+To install dependencies you should run `npm`:
+``` bash
+$ npm install
+```
+
+To run the program you can run this commands:
+``` bash
+$ electron .
+```
+OR
+``` bash
+$ npm start
+```
+
 ## Please help me improve this program
 I would be very happy if I see that any body else develop this program and if you can't please tell me your opinion about the File Archiver that so I can improve this.
 
