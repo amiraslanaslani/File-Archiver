@@ -9,4 +9,4 @@ You can search by tags or name around files that you added to archive.
 I would be very happy if I see that any body else develop this program and if you can't please tell me your opinion about the File Archiver that so I can improve this.
 
 ## License
-Released under [GNU/GPL Version 3](LICENSE)
+Released under [GNU/GPL Version 3](LICENSE.md)
