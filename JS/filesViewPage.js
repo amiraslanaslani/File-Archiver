@@ -182,12 +182,10 @@ exports.refreshView = function(){
 
 exports.leftPanelLoad = function(){
     $('#tagsBox span').click(function(){
-        $(this).find('input[type=checkbox]').click();
-    });
-
-    $('#tagsBox span input[type=checkbox]').click(function(){
+        let currentCheckValue = $(this).find('input[type=checkbox]').prop('checked');
+        $(this).find('input[type=checkbox]').prop('checked', ! currentCheckValue);
         exports.refreshView();
-    })
+    });
 
     $('#fileSearch').keyup(function(){
         exports.refreshView();
