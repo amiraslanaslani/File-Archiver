@@ -25,7 +25,7 @@ function linkDirector(file_name, isUsePath_int){
         
     return path.normalize(
         path.join(
-            __dirname, '../Files', file_name
+            process.cwd(), '/Files/', file_name
         )
     );
 }

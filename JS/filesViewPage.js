@@ -37,7 +37,8 @@ let rightCol = (files) => {
                     size = `<a class="errorText">This file does not exist!</a>`;
                     if(fs.existsSync(file_path)){
                         let stats = fs.statSync(file_path);
-                        size = `${stats.size} KB (${stats.size / 1024} MB)`
+                        let sizeInKB = stats.size / 1024;
+                        size = `${sizeInKB} KB (${sizeInKB / 1024} MB)`
                     }
 
                     let picture = showFileIcons.getFileImage({
