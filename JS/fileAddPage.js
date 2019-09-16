@@ -6,7 +6,12 @@ const viewLoader = require('./viewLoader.js');
 
 var fs = require('fs');
 var isFileSelected = false;
-var allTags = [];
+var isFileCopyPathChanged = false;
+var fileCopyPath = path.normalize(
+    path.join(
+        process.cwd(), '/Files/'
+    )
+);
 
 function resetPage(notLoadedTags){
     notLoadedTags = notLoadedTags || [];
@@ -20,16 +25,10 @@ function resetPage(notLoadedTags){
     $('#tagsDiv').html('');
 
     fileModel.loadTagsList((tags) => {
-        console.log(notLoadedTags);
-        console.log("Tags1: " + tags);
         tags = tags.concat(notLoadedTags);
-        console.log('Tags1.5: ' + tags);
-        
         tags = tags.filter(function(item, pos) {
             return tags.indexOf(item) == pos;
         });
-
-        console.log("Tags2: " + tags);
         
         $("#fileTags").autocomplete('option', 'source', tags);
     });
@@ -54,15 +53,15 @@ exports.addFileBtn = function() {
         let newFileName = generate_random_string(5) + '_' + filePathName;
 
         dialogs.openLoadingDialog();
-        fs.copyFile(filePath, 'Files/' + newFileName, (err) => {
+        fs.copyFile(filePath, fileCopyPath + newFileName, (err) => {
             dialogs.closeLoadingDialog();
             if(err) {
                 dialogs.openErrorDialog(err);
             }
             else {
-                let file = newFileName;
+                let file = (isFileCopyPathChanged ? fileCopyPath : '') + newFileName;
 
-                fileModel.add(name, desc, file, tags, false);
+                fileModel.add(name, desc, file, tags, isFileCopyPathChanged);
                 resetPage(tags);
             }
         });
@@ -72,7 +71,7 @@ exports.addFileBtn = function() {
             let basePath = path.resolve(__dirname, '../');
             
             let relativePath = path.relative(
-                basePath, 
+                basePath,
                 filePath
             );
 
@@ -167,10 +166,33 @@ exports.selectFile = function() {
     }
 }
 
+exports.changeFileCopyPath = function() {
+    let selected = dialog.showOpenDialog(
+        {
+            properties: ['openDirectory']
+        }
+    );
+    if(selected == undefined || selected == null){
+        return;
+    }
+
+    selected = selected[0] + '/';
+    isFileCopyPathChanged = true;
+    fileCopyPath = selected;
+    $('#FileCopyLocationText').val(selected);
+}
+
 exports.load = function() {
     document.getElementById("rightCol").innerHTML = viewLoader.load('file_add_right.html');
     document.getElementById("leftCol").innerHTML = viewLoader.load('file_add_left.html');
+    
+    fileCopyPath = path.normalize(
+        path.join(
+            process.cwd(), '/Files/'
+        )
+    );
 
+    $('#FileCopyLocationText').val(fileCopyPath);
     $('#fileTags').keypress(fileAddPage.tagsKeyPress);
     $('#addFileBtn').click(fileAddPage.addFileBtn);
 

@@ -2,6 +2,15 @@
 <button class="dark-inp light-inp" onClick="fileAddPage.selectFile()">
     <i class="fas fa-file-upload"></i> Select File
 </button>
+
+<div id="FileCopyLocation">
+    <label>
+        <strong>Copy File To: </strong>
+    </label>
+    <input type="text" id="FileCopyLocationText" disabled>
+    <button class="light-inp" onClick="fileAddPage.changeFileCopyPath()">Change</button>
+</div>
+
 <div id="pathUsingCheckBoxDiv">
     <label>
         <div class="check-dark">
@@ -11,6 +20,7 @@
         <a>Use file path (Intead of keeping a copy of the file)</a>
     </label>
 </div>
+
 <div id="relativePathUsingCheckBoxDiv">
     <label>
         <div class="check-dark">
@@ -20,6 +30,7 @@
         <a>Use relative path</a>
     </label>
 </div>
+
 <div id="selectedFilesInfo">
     <p>
         <strong>Path: </strong> <span id="pathInfo">-</span><br>
