@@ -9,13 +9,17 @@ app.once('ready', () => {
         minHeight: 500,
         frame: true,
         icon: path.join(__dirname, 'Pictures/file-archiver.png')
-    })
+    });
 
     window.setMenuBarVisibility(false);
     window.loadFile('View/main.html');
     window.setTitle('File Archiver');
 
+    window.on('close', () => {
+        app.quit();
+    });
+
     window.once('ready-to-show', () => {
         window.show()
-    })
-})
+    });
+});
