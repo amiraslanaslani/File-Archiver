@@ -63,7 +63,7 @@ exports.openContentDialogWithDefaultParameters = function(id){
             
             for(let i in tags){
                 let tag = tags[i];
-                contentDialogAddTag(tag.tag);
+                contentDialogAddTag(tag);
             }
         });
     });

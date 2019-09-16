@@ -6,8 +6,11 @@ const viewLoader = require('./viewLoader.js');
 
 var fs = require('fs');
 var isFileSelected = false;
+var allTags = [];
 
-function resetPage(){
+function resetPage(notLoadedTags){
+    notLoadedTags = notLoadedTags || [];
+
     $('#fileName').val('');
     $('#fileDesc').val('');
     $('#filePath').val('');
@@ -15,6 +18,21 @@ function resetPage(){
     $('#pathInfo').html('');
     $('#sizeInfo').html('');
     $('#tagsDiv').html('');
+
+    fileModel.loadTagsList((tags) => {
+        console.log(notLoadedTags);
+        console.log("Tags1: " + tags);
+        tags = tags.concat(notLoadedTags);
+        console.log('Tags1.5: ' + tags);
+        
+        tags = tags.filter(function(item, pos) {
+            return tags.indexOf(item) == pos;
+        });
+
+        console.log("Tags2: " + tags);
+        
+        $("#fileTags").autocomplete('option', 'source', tags);
+    });
 
     isFileSelected = false;
     tags = [];
@@ -45,7 +63,7 @@ exports.addFileBtn = function() {
                 let file = newFileName;
 
                 fileModel.add(name, desc, file, tags, false);
-                resetPage();
+                resetPage(tags);
             }
         });
     }
@@ -63,7 +81,7 @@ exports.addFileBtn = function() {
         else{
             fileModel.add(name, desc, filePath, tags, true);
         }
-        resetPage();
+        resetPage(tags);
     }
     
 }
@@ -165,6 +183,12 @@ exports.load = function() {
         else
             $('#relativePathUsingCheckBoxDiv').hide(500);
     });
+
+    fileModel.loadTagsList((tags) => {
+        $('#fileTags').autocomplete({
+            source: tags
+        });
+    })
 }
 
 function generate_random_string(string_length){

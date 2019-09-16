@@ -1,0 +1,17 @@
+ul.ui-autocomplete{
+    background: #2f3640;
+    width: 246px;
+    padding: 0;
+    color: #bdc3c7;
+    box-shadow: rgb(34, 34, 34) 0px 0px 5px 1px;
+    border-radius: 3px;
+}
+
+ul.ui-autocomplete .ui-menu-item{
+    list-style: none;
+    padding: 5px;
+}
+
+ul.ui-autocomplete .ui-menu-item:hover{
+    background-color: rgb(27, 27, 32);
+}

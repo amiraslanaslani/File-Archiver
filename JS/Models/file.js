@@ -77,6 +77,7 @@ exports.loadTagsList = function(callback){
             dialogs.openErrorDialog(err);
         }
         else{
+            rows = rows.map((tag) => {return tag.tag});
             callback(rows)
         }
     });
@@ -89,6 +90,7 @@ exports.loadTagsListWithFileID = function(fileID, callback){
             dialogs.openErrorDialog(err);
         }
         else{
+            rows = rows.map((tag) => {return tag.tag});
             callback(rows)
         }
     });

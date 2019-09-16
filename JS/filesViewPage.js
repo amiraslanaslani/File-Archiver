@@ -23,11 +23,7 @@ let rightCol = (files) => {
         function(id){
             fileModel.loadWithID(id, (row) => {
                 $('#fileInfoBox').data('file', row);
-                fileModel.loadTagsListWithFileID(row.id, (tags) => {
-                    tagsList = [];
-                    tags.forEach(tag => {
-                        tagsList.push(tag.tag);
-                    });
+                fileModel.loadTagsListWithFileID(row.id, (tagsList) => {
 
                     let type = path.extname(row.file_name).toUpperCase();
                     
@@ -70,7 +66,7 @@ let leftCol = (tags) => {
     let content = '';
 
     for(let tagID in tags){
-        let tag = tags[tagID].tag;
+        let tag = tags[tagID];
         let lowercase_tag = tag.toLowerCase();
         content += viewLoader.load(
             'file_view_left/repeatable.html', 
