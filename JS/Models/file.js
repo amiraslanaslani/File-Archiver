@@ -71,7 +71,7 @@ exports.loadFilesFromTagAndSearchString = function(tags = [], search = '', callb
 }
 
 exports.loadTagsList = function(callback){
-    let query = "SELECT DISTINCT tag FROM files_tags";
+    let query = "SELECT DISTINCT tag FROM files_tags ORDER BY tag";
     baseModel.db.all(query, [], (err, rows) => {
         if(err){
             dialogs.openErrorDialog(err);
