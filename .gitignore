@@ -35,3 +35,6 @@ Files
 
 # Dolphine file
 .directory
+
+# Packaged Files
+file-archiver-*
