@@ -61,6 +61,10 @@ exports.addFileBtn = function() {
             else {
                 let file = (isFileCopyPathChanged ? fileCopyPath : '') + newFileName;
 
+                if($('#relativePathUsingCheckBox').prop('checked')){
+                    file = path.relative(process.cwd(), file);
+                }
+
                 fileModel.add(name, desc, file, tags, isFileCopyPathChanged);
                 resetPage(tags);
             }
@@ -68,7 +72,7 @@ exports.addFileBtn = function() {
     }
     else{
         if($('#relativePathUsingCheckBox').prop('checked')){
-            let basePath = path.resolve(__dirname, '../');
+            let basePath = path.resolve(process.cwd());
             
             let relativePath = path.relative(
                 basePath,
@@ -199,12 +203,12 @@ exports.load = function() {
     $('#leftColBtn').click(() => {
         filesViewPage.load();
     });
-    $('#pathUsingCheckBox').change(function(){
-        if(this.checked)
-            $('#relativePathUsingCheckBoxDiv').show(500);
-        else
-            $('#relativePathUsingCheckBoxDiv').hide(500);
-    });
+    // $('#pathUsingCheckBox').change(function(){
+    //     if(this.checked)
+    //         $('#relativePathUsingCheckBoxDiv').show(500);
+    //     else
+    //         $('#relativePathUsingCheckBoxDiv').hide(500);
+    // });
 
     fileModel.loadTagsList((tags) => {
         $('#fileTags').autocomplete({

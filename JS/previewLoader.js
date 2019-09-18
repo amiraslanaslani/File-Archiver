@@ -18,10 +18,14 @@ var videos = [
 ];
 
 function linkDirector(file_name, isUsePath_int){
-    let isUsePath = isUsePath_int == 1 ? true : false;
+    let isUsingPath = isUsePath_int == 1 ? true : false;
 
-    if(isUsePath)
-        return file_name;
+    if(isUsingPath){
+        return path.resolve(
+            process.cwd(),
+            file_name
+        );
+    }
         
     return path.normalize(
         path.join(
@@ -33,7 +37,7 @@ function linkDirector(file_name, isUsePath_int){
 exports.load = function(file){
     let format = path.extname(file.file_name).replace('.', "").toLowerCase();
     let link = linkDirector(file.file_name, file.using_path);
-
+    
     if(! fs.existsSync(link))
         return viewLoader.load(
             'preview_loader/error.html'

@@ -5,9 +5,9 @@
     text-align: left;
 }
 
-#relativePathUsingCheckBoxDiv{
+/* #relativePathUsingCheckBoxDiv{
     display: none;
-}
+} */
 
 #pathUsingCheckBoxDiv label a, #relativePathUsingCheckBoxDiv label a{
     vertical-align: super;
